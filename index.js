@@ -21,7 +21,7 @@ app.set('view engine', 'ejs');
 const GPT_MODE = process.env.GPT_MODE || 'CHAT';
 const HISTORY_LENGTH = process.env.HISTORY_LENGTH || 5;
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || '';
-const MODEL_NAME = process.env.MODEL_NAME || 'gpt-3.5-turbo';
+const MODEL_NAME = process.env.MODEL_NAME || 'google/gemma-2-9b-it:free';
 const TWITCH_USER = process.env.TWITCH_USER || 'oSetinhasBot';
 const TWITCH_AUTH = process.env.TWITCH_AUTH || 'oauth:vgvx55j6qzz1lkt3cwggxki1lv53c2';
 const COMMAND_NAME = process.env.COMMAND_NAME || '!gpt';
