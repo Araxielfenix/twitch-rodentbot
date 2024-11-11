@@ -48,6 +48,14 @@ const bot = new TwitchBot(TWITCH_USER, TWITCH_AUTH, channels, OPENAI_API_KEY, EN
 
 // Setup OpenAI operations
 fileContext = fs.readFileSync('./file_context.txt', 'utf8');
+const now = new Date();
+const horaUtc = now.getUTCHours();
+const horaCdmx = horaUtc - 6; // Ajustar para CST
+
+console.log(`La hora en la Ciudad de México es: ${horaCdmx}`);
+
+fileContext += '\n La hora actual en la ciudad de México es: ' + horaCdmx;
+
 const openaiOps = new OpenAIOperations(fileContext, OPENAI_API_KEY, MODEL_NAME, HISTORY_LENGTH);
 
 // Setup Twitch bot callbacks
