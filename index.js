@@ -19,13 +19,13 @@ app.set('view engine', 'ejs');
 
 // Load environment variables
 const GPT_MODE = process.env.GPT_MODE || 'CHAT';
-const HISTORY_LENGTH = process.env.HISTORY_LENGTH || 5;
+const HISTORY_LENGTH = process.env.HISTORY_LENGTH || 20;
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY || '';
 const MODEL_NAME = process.env.MODEL_NAME || 'google/gemma-2-9b-it:free';
-const TWITCH_USER = process.env.TWITCH_USER || 'oSetinhasBot';
-const TWITCH_AUTH = process.env.TWITCH_AUTH || 'oauth:vgvx55j6qzz1lkt3cwggxki1lv53c2';
-const COMMAND_NAME = process.env.COMMAND_NAME || '!gpt';
-const CHANNELS = process.env.CHANNELS || 'oSetinhas,jones88';
+const TWITCH_USER = process.env.TWITCH_USER || 'RodentPlay';
+const TWITCH_AUTH = process.env.TWITCH_AUTH || 'oauth:a34lxh7cbszmea7icbyxhtyeinvyoo';
+const COMMAND_NAME = process.env.COMMAND_NAME || '@RodentPlay';
+const CHANNELS = process.env.CHANNELS || 'AraxielFenix, Maritha_F, FooNess13, nunchuckya , soyyonotuxdjsjs';
 const SEND_USERNAME = process.env.SEND_USERNAME || 'true';
 const ENABLE_TTS = process.env.ENABLE_TTS || 'false';
 const ENABLE_CHANNEL_POINTS = process.env.ENABLE_CHANNEL_POINTS || 'false';
