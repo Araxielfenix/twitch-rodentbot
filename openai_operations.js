@@ -8,8 +8,8 @@ export class OpenAIOperations {
             baseURL: "https://openrouter.ai/api/v1",
             apiKey: openai_key,
             defaultHeaders: {
-                "HTTP-Referer": "https://yourapp.com", // Reemplaza con la URL de tu aplicación
-                "X-Title": "Your App Name", // Reemplaza con el nombre de tu aplicación
+                "HTTP-Referer": "https://discord.gg/mE5mQfu ", // Reemplaza con la URL de tu aplicación
+                "X-Title": "RodentPlay", // Reemplaza con el nombre de tu aplicación
             }
         });
         this.model_name = model_name;
@@ -49,7 +49,7 @@ export class OpenAIOperations {
             }
         } catch (error) {
             console.error(error);
-            return "Sorry, something went wrong. Please try again later.";
+            return "NotLikeThis Tuve un problema para entender tu mensaje, por favor intenta mas tarde PoroSad";
         }
     }
 
@@ -74,7 +74,7 @@ export class OpenAIOperations {
             }
         } catch (error) {
             console.error(error);
-            return "Sorry, something went wrong. Please try again later.";
+            return "NotLikeThis Tuve un problema para entender tu mensaje, por favor intenta mas tarde PoroSad";
         }
     }
 }
