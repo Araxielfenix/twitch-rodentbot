@@ -50,6 +50,7 @@ export class OpenAIOperations {
 
             // Verificar si la respuesta tiene opciones
             if (data.choices && data.choices[0].message) {
+                console.log("data");
                 const agent_response = data.choices[0].message.content;
                 console.log(`Agent Response: ${agent_response}`);
                 this.messages.push({ role: "assistant", content: agent_response });
