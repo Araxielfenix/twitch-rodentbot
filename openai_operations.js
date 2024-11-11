@@ -1,18 +1,22 @@
 // Import modules
 import OpenAI from "openai";
+import dotenv from "dotenv";
+
+// Carga las variables de entorno
+dotenv.config();
 
 export class OpenAIOperations {
-    constructor(file_context, openai_key, model_name, history_length) {
+    constructor(file_context, history_length) {
         this.messages = [{ role: "system", content: file_context }];
         this.openai = new OpenAI({
             baseURL: "https://openrouter.ai/api/v1",
-            apiKey: openai_key,
+            apiKey: process.env.OPENAI_API_KEY,
             defaultHeaders: {
-                "HTTP-Referer": "https://discord.gg/mE5mQfu ", // Reemplaza con la URL de tu aplicación
-                "X-Title": "RodentPlay", // Reemplaza con el nombre de tu aplicación
+                "HTTP-Referer": 'https://discord.gg/mE5mQfu',
+                "X-Title": 'RodentPlay',
             }
         });
-        this.model_name = model_name;
+        this.model_name = process.env.MODEL_NAME;
         this.history_length = history_length;
     }
 
@@ -56,7 +60,7 @@ export class OpenAIOperations {
     async make_openai_call_completion(text) {
         try {
             const response = await this.openai.completions.create({
-                model: "this.model_name",
+                model: process.env.MODEL_NAME,
                 prompt: text,
                 temperature: 1,
                 max_tokens: 256,
