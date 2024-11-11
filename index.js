@@ -13,6 +13,8 @@ console.log(process.env);
 // Setup express app
 const app = express();
 const expressWsInstance = expressWs(app);
+const response = await openaiOps.make_openrouter_call(text);
+
 
 // Set the view engine to ejs
 app.set('view engine', 'ejs');
@@ -87,7 +89,7 @@ bot.onMessage(async (channel, user, message, self) => {
         }
         lastResponseTime = currentTime; // Update the last response time
 
-        const response = await openaiOps.make_openai_call(message);
+        const response = await openaiOps.make_openrouter_call(message);
         bot.say(channel, response);
     }
 
@@ -104,7 +106,7 @@ bot.onMessage(async (channel, user, message, self) => {
             text = `Message from user ${user.username}: ${text}`;
         }
 
-        const response = await openaiOps.make_openai_call(text);
+        const response = await openaiOps.make_openrouter_call(text);
         if (response.length > maxLength) {
             const messages = response.match(new RegExp(`.{1,${maxLength}}`, 'g'));
             messages.forEach((msg, index) => {
@@ -167,10 +169,10 @@ app.get('/gpt/:text', async (req, res) => {
     let answer = '';
     try {
         if (GPT_MODE === 'CHAT') {
-            answer = await openaiOps.make_openai_call(text);
+            answer = await openaiOps.make_openrouter_call(text);
         } else if (GPT_MODE === 'PROMPT') {
             const prompt = `${fileContext}\n\nUser: ${text}\nAgent:`;
-            answer = await openaiOps.make_openai_call_completion(prompt);
+            answer = await openaiOps.make_openrouter_call_completion(prompt);
         } else {
             throw new Error('GPT_MODE is not set to CHAT or PROMPT. Please set it as an environment variable.');
         }
