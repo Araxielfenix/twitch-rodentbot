@@ -48,8 +48,8 @@ const bot = new TwitchBot(TWITCH_USER, TWITCH_AUTH, channels, OPENAI_API_KEY, EN
 
 // Setup OpenAI operations
 fileContext = fs.readFileSync('./file_context.txt', 'utf8');
-const now = new Date();
-const horaCdmx = now.toLocaleString("es-MX", {timeZone: "Mexico_City"}); // Ajustar para CST
+const toDay = new Date();
+const horaCdmx = toDay.toLocaleString("es-MX", {timeZone: "America/Mexico_City"});
 
 console.log(`La hora en la Ciudad de México es: ${horaCdmx}`);
 
