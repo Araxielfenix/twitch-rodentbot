@@ -42,9 +42,8 @@ export class OpenAIOperations {
                     body: JSON.stringify({
                         model: this.model_name,
                         messages: this.messages,
-                        temperature: 1,
+                        temperature: 0.3,
                         max_tokens: 100, // Reducir tokens para evitar problemas de límite
-                        top_p: 1,
                         frequency_penalty: 0,
                         presence_penalty: 0,
                     }),
