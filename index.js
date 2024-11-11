@@ -13,8 +13,6 @@ console.log(process.env);
 // Setup express app
 const app = express();
 const expressWsInstance = expressWs(app);
-const response = await openaiOps.make_openrouter_call(text);
-
 
 // Set the view engine to ejs
 app.set('view engine', 'ejs');
