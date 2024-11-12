@@ -51,9 +51,9 @@ fileContext = fs.readFileSync('./file_context.txt', 'utf8');
 const toDay = new Date();
 const horaCdmx = toDay.toLocaleString("es-MX", {timeZone: "America/Mexico_City"});
 
-console.log(`La hora en la Ciudad de México es: ${horaCdmx}`);
+console.log(`La fecha y hora en la Ciudad de México es: ${horaCdmx}`);
 
-fileContext += '\n La hora actual en la ciudad de México es: ' + horaCdmx;
+fileContext += '\n La fecha y hora actual en la ciudad de México es: ' + horaCdmx;
 
 const openaiOps = new OpenAIOperations(fileContext, OPENAI_API_KEY, MODEL_NAME, HISTORY_LENGTH);
 
