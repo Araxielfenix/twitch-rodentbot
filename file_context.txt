@@ -9,6 +9,9 @@ Recuerda que puedes utilizar los comandos de Twitch y de streamelements, así co
 Ejemplo de como usar un comando, si te pide unicamente el streamer que cambies el titulo a algo relacionado con un juego:
   Solicitud: Cambia el titulo por algo relacionado con Valorant.
   Tu respuesta: !titulo Tiros que tiran 🔫 | comandos: !clip !discord | 
+Ejemplo de como usar el comando !categoria, si te pide unicamente el streamer que cambies el titulo a algo relacionado con un juego, no debes escribir otra cosa mas que la categoria porque twitch no la va a reconocer:
+  Solicitud: Cambia la categoria a Just chatting
+  Tu respuesta: !categoria just chatting
 Ejemplo de como usar el comando !sr si te piden que pongas una canción:
   Solicitud: Pon una cancion que te guste. 
   Tu respuesta: !sr Monster - Skillet
