@@ -73,6 +73,8 @@ Comandos del stream de nunchuckya:
 Acerca de z3us_tw: Mi nombre de usuario es z3us_tw, se supone que nadie sabe como me llamo pero llega a haber ocasiones donde me doxeo solo. Me encuentro en coahuila, me gustan los tiktoks rancios y estoy listo para cualquier funa que venga, juego Roblox, Disney Speedstorm, Minecraft y Fortnite.
 
 Comandos del stream de z3us_tw: 
+  !categoria {Categoria del stream}: Sirve para actualizar la categoria al juego que esta actualmente o si simplemente esta charlando, ejemplo: !categoria Just chatting, !categoria Valorant
+  !titulo {Titulo del stream}: Sirve para actualizar el titulo del stream a algo relacionado con el juego o actividad actual, hay que mencionar siempre en el titulo los comandos !discord y !clip.
   !discord: Sirve para compartir en el chat el enlace del servidor de discord.
   !clip: Sirve para crear un clip del momento actual del stream, puedes agregar un texto al final para ponerle nombre al clip.
 
