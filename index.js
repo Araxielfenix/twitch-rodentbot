@@ -6,35 +6,6 @@ import {job} from './keep_alive.js';
 import {OpenAIOperations} from './openai_operations.js';
 import {TwitchBot} from './twitch_bot.js';
 
-let canal = "";
-async function getStreamInfo(channel) {
-    const urls = [
-        `https://decapi.me/twitch/title/${channel}`,
-        `https://decapi.me/twitch/game/${channel}`,
-        `https://decapi.me/twitch/viewercount/${channel}`,
-    ];
-
-    try {
-        const [titleResponse, gameResponse, viewerResponse] = await Promise.all(urls.map(url => fetch(url)));
-
-        if (!titleResponse.ok || !gameResponse.ok || !viewerResponse.ok) {
-            throw new Error('Network response was not ok');
-        }
-
-        const titulo = await titleResponse.text();
-        const categoria = await gameResponse.text();
-        const espectadores = await viewerResponse.text();
-
-        const info = `Mensaje recibido en el canal de: ${channel}, titulo del stream: ${titulo}, categoria del stream: ${categoria}, numero de espectadores en este momento: ${espectadores}.`;
-        console.log(info);
-
-        return info;
-    } catch (error) {
-        console.error(`Error al obtener la información del stream para el canal ${channel}:`, error);
-        return null;
-    }
-}
-
 // Start keep alive cron job
 job.start();
 console.log(process.env);
@@ -83,8 +54,6 @@ const horaCdmx = toDay.toLocaleString("es-MX", {timeZone: "America/Mexico_City"}
 console.log(`La fecha y hora en la Ciudad de México es: ${horaCdmx}`);
 
 fileContext += '\n La fecha y hora actual en la ciudad de México es: ' + horaCdmx + '\n';
-//console.log(await getStreamInfo(canal));
-//fileContext += await getStreamInfo(canal);
 fileContext += '\nPor favor, responde el mensaje del espectador:';
 
 const openaiOps = new OpenAIOperations(fileContext, OPENAI_API_KEY, MODEL_NAME, HISTORY_LENGTH);
@@ -117,8 +86,6 @@ bot.onMessage(async (channel, user, message, self) => {
 
     const currentTime = Date.now();
     const elapsedTime = (currentTime - lastResponseTime) / 1000; // Time in seconds
-
-    canal = channel;
     
     if (ENABLE_CHANNEL_POINTS === 'true' && user['msg-id'] === 'highlighted-message') {
         console.log(`Highlighted message: ${message}`);
