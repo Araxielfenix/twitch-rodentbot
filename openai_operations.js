@@ -8,8 +8,6 @@ export class OpenAIOperations {
         this.apiKey = process.env.OPENAI_API_KEY;
         this.model_name = process.env.MODEL_NAME;
         this.history_length = history_length;
-        this.channelName = null; // Variable para guardar el nombre del canal
-        this.file_context = file_context; // Contexto inicial del archivo
     }
 
     check_history_length() {
@@ -20,34 +18,12 @@ export class OpenAIOperations {
         }
     }
 
-    // Función para extraer el nombre del canal del mensaje recibido
-    extractChannelName(text) {
-        const channelRegex = /#(\w+)/; // Asume que el canal viene en formato "#channelName"
-        const match = text.match(channelRegex);
-        return match ? match[1] : null;
-    }
-
-    // Actualizar file_context con información adicional
-    updateFileContext(info) {
-        this.file_context += `\n${info}`;
-        this.messages[0].content = this.file_context; // Actualizar el mensaje del sistema
-    }
-
     async make_openrouter_call(text) {
         const maxRetries = 3;
         let attempts = 0;
 
         while (attempts < maxRetries) {
             try {
-                // Extraer el nombre del canal y almacenarlo
-                this.channelName = this.extractChannelName(text);
-                Console.log(`El nombre del canal es: ${this.channelName}`);
-                if (this.channelName) {
-                    console.log(`Nombre del canal extraído: ${this.channelName}`);
-                } else {
-                    console.log("No se pudo extraer el nombre del canal.");
-                }
-
                 // Agregar mensaje del usuario a la historia
                 this.messages.push({ role: "user", content: text });
 
@@ -100,43 +76,6 @@ export class OpenAIOperations {
                     return "Tuve un problema para entender tu mensaje, por favor intenta más tarde.";
                 }
             }
-        }
-    }
-
-    async getStreamInfo() {
-        if (!this.channelName) {
-            console.error("Nombre del canal no disponible.");
-            return;
-        }
-
-        const urls = [
-            `https://decapi.me/twitch/title/${this.channelName}`,
-            `https://decapi.me/twitch/game/${this.channelName}`,
-            `https://decapi.me/twitch/viewercount/${this.channelName}`,
-        ];
-
-        try {
-            const [titleResponse, gameResponse, viewerResponse] = await Promise.all(urls.map(url => fetch(url)));
-
-            if (!titleResponse.ok || !gameResponse.ok || !viewerResponse.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const titulo = await titleResponse.text();
-            const categoria = await gameResponse.text();
-            const espectadores = await viewerResponse.text();
-
-            console.log('Título del stream:', titulo);
-            console.log('Categoría del stream:', categoria);
-            console.log('Espectadores actuales del stream:', espectadores);
-
-            // Construir mensaje con el formato requerido
-            const streamInfo = `Mensaje recibido en el canal: ${this.channelName}, titulo del stream: ${titulo}, categoria del stream: ${categoria}, cantidad de espectadores: ${espectadores}.`;
-            console.log(streamInfo);
-            // Actualizar file_context
-            this.updateFileContext(streamInfo);
-        } catch (error) {
-            console.error('Error al obtener la información del stream:', error);
         }
     }
 }
