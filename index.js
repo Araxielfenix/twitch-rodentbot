@@ -41,6 +41,7 @@ const maxLength = 399;
 let fileContext = 'You are a helpful Twitch Chatbot.';
 let lastUserMessage = '';
 let lastResponseTime = 0; // Track the last response time
+let canal = '';
 let infoCanal = '';
 
 // Setup Twitch bot
@@ -218,6 +219,7 @@ function notifyFileChange() {
 }
 
 async function getStreamInfo(channel) {
+    canal = channel;
     const urls = [
         `https://decapi.me/twitch/title/${channel}`,
         `https://decapi.me/twitch/game/${channel}`,
