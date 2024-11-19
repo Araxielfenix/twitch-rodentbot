@@ -89,7 +89,7 @@ bot.onMessage(async (channel, user, message, self) => {
     if (self) return;
 
     if(infoCanal == ''){
-        infoCanal = getStreamInfo(canal);
+        infoCanal = getStreamInfo(infoCanal);
     }
     
     const currentTime = Date.now();
