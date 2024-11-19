@@ -55,7 +55,7 @@ const horaCdmx = toDay.toLocaleString("es-MX", {timeZone: "America/Mexico_City"}
 console.log(`La fecha y hora en la Ciudad de México es: ${horaCdmx}`);
 
 fileContext += '\n La fecha y hora actual en la ciudad de México es: ' + horaCdmx;
-fileContext += streamInfo(canal);
+fileContext += getStreamInfo(canal);
 fileContext += '\nPor favor, responde el mensaje del espectador:';
 
 const openaiOps = new OpenAIOperations(fileContext, OPENAI_API_KEY, MODEL_NAME, HISTORY_LENGTH);
