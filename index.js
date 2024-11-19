@@ -41,7 +41,7 @@ const maxLength = 399;
 let fileContext = 'You are a helpful Twitch Chatbot.';
 let lastUserMessage = '';
 let lastResponseTime = 0; // Track the last response time
-let canal = 'AraxielFenix';
+let infoCanal = '';
 
 // Setup Twitch bot
 console.log('Channels: ', channels);
@@ -54,6 +54,11 @@ const horaCdmx = toDay.toLocaleString("es-MX", {timeZone: "America/Mexico_City"}
 
 console.log(`La fecha y hora en la Ciudad de México es: ${horaCdmx}`);
 fileContext += '\n La fecha y hora actual en la ciudad de México es: ' + horaCdmx;
+if(infoCanal != ''){
+    console.log(infoCanal);
+    fileContext += infoCanal;
+}
+fileContext += '\nPor favor, responde el mensaje del espectador:';
 
 const openaiOps = new OpenAIOperations(fileContext, OPENAI_API_KEY, MODEL_NAME, HISTORY_LENGTH);
 
@@ -83,9 +88,9 @@ bot.connect(
 bot.onMessage(async (channel, user, message, self) => {
     if (self) return;
 
-    canal = channel;
-    console.log(getStreamInfo(canal));
-    fileContext += getStreamInfo(canal) + '\nPor favor, responde el mensaje del espectador:';
+    if(infoCanal == ''){
+        infoCanal = getStreamInfo(canal);
+    }
     
     const currentTime = Date.now();
     const elapsedTime = (currentTime - lastResponseTime) / 1000; // Time in seconds
