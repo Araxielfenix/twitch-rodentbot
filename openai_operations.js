@@ -41,6 +41,7 @@ export class OpenAIOperations {
             try {
                 // Extraer el nombre del canal y almacenarlo
                 this.channelName = this.extractChannelName(text);
+                Console.log(`El nombre del canal es: ${this.channelName}`);
                 if (this.channelName) {
                     console.log(`Nombre del canal extraído: ${this.channelName}`);
                 } else {
