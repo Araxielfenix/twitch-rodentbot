@@ -56,8 +56,6 @@ console.log(`La fecha y hora en la Ciudad de México es: ${horaCdmx}`);
 console.log(getStreamInfo(canal));
 
 fileContext += '\n La fecha y hora actual en la ciudad de México es: ' + horaCdmx;
-fileContext += getStreamInfo(canal);
-fileContext += '\nPor favor, responde el mensaje del espectador:';
 
 const openaiOps = new OpenAIOperations(fileContext, OPENAI_API_KEY, MODEL_NAME, HISTORY_LENGTH);
 
@@ -91,7 +89,7 @@ bot.onMessage(async (channel, user, message, self) => {
     const elapsedTime = (currentTime - lastResponseTime) / 1000; // Time in seconds
     
     canal = channel;
-
+    fileContext += getStreamInfo(canal) + '\nPor favor, responde el mensaje del espectador:';
     if (ENABLE_CHANNEL_POINTS === 'true' && user['msg-id'] === 'highlighted-message') {
         console.log(`Highlighted message: ${message}`);
         if (elapsedTime < COOLDOWN_DURATION) {
