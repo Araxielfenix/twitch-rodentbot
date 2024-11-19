@@ -131,7 +131,7 @@ export class OpenAIOperations {
 
             // Construir mensaje con el formato requerido
             const streamInfo = `Mensaje recibido en el canal: ${this.channelName}, titulo del stream: ${titulo}, categoria del stream: ${categoria}, cantidad de espectadores: ${espectadores}.`;
-
+            console.log(streamInfo);
             // Actualizar file_context
             this.updateFileContext(streamInfo);
         } catch (error) {
