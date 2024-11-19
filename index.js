@@ -53,8 +53,6 @@ const toDay = new Date();
 const horaCdmx = toDay.toLocaleString("es-MX", {timeZone: "America/Mexico_City"});
 
 console.log(`La fecha y hora en la Ciudad de México es: ${horaCdmx}`);
-console.log(getStreamInfo(canal));
-
 fileContext += '\n La fecha y hora actual en la ciudad de México es: ' + horaCdmx;
 
 const openaiOps = new OpenAIOperations(fileContext, OPENAI_API_KEY, MODEL_NAME, HISTORY_LENGTH);
@@ -85,11 +83,13 @@ bot.connect(
 bot.onMessage(async (channel, user, message, self) => {
     if (self) return;
 
+    canal = channel;
+    console.log(getStreamInfo(canal));
+    fileContext += getStreamInfo(canal) + '\nPor favor, responde el mensaje del espectador:';
+    
     const currentTime = Date.now();
     const elapsedTime = (currentTime - lastResponseTime) / 1000; // Time in seconds
     
-    canal = channel;
-    fileContext += getStreamInfo(canal) + '\nPor favor, responde el mensaje del espectador:';
     if (ENABLE_CHANNEL_POINTS === 'true' && user['msg-id'] === 'highlighted-message') {
         console.log(`Highlighted message: ${message}`);
         if (elapsedTime < COOLDOWN_DURATION) {
