@@ -53,6 +53,7 @@ const toDay = new Date();
 const horaCdmx = toDay.toLocaleString("es-MX", {timeZone: "America/Mexico_City"});
 
 console.log(`La fecha y hora en la Ciudad de México es: ${horaCdmx}`);
+console.log(getStreamInfo(canal));
 
 fileContext += '\n La fecha y hora actual en la ciudad de México es: ' + horaCdmx;
 fileContext += getStreamInfo(canal);
@@ -231,7 +232,7 @@ async function getStreamInfo(channel) {
         const categoria = await gameResponse.text();
         const espectadores = await viewerResponse.text();
 
-        return '\nMensaje recibido en el canal: ' + canal + ', titulo del stream: ' + titulo + ', categoria del stream: ' + categoria + ', cantidad de espectadores: '+ categoria + '\n';
+        return '\nMensaje recibido en el canal: ' + canal + ', titulo del stream: ' + titulo + ', categoria del stream: ' + categoria + ', cantidad de espectadores: '+ espectadores + '\n';
     } catch (error) {
         console.error('Error al obtener la información del stream:', error);
         return null; // Maneja el error devolviendo null
