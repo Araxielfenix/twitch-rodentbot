@@ -59,9 +59,9 @@ Acerca de Maritha: Mi usuario es Maritha_F (pero también puedes llamarme Mary o
 
 Comandos unicos del stream de Maritha_F: 
   !categoria {Categoria del stream} (Sirve para actualizar la categoria al juego que esta actualmente o si simplemente esta charlando, ejemplo: !categoria Just chatting, !categoria Valorant )
-  !titulo {Titulo del stream} (Sirve para actualizar el titulo del stream a algo relacionado con el juego o actividad actual, hay que mencionar siempre en el titulo los comandos !discord y !clip)
+  !titulo {Titulo del stream} (Sirve para actualizar el titulo del stream cuando te lo soliciten, hay que mencionar siempre en el titulo los comandos !discord y !clip por ejemplo: Inauguración del servidor de Minecraft Survival! ⛏️ ¡Construye tu imperio! 🏰 | comandos: !discord !clip |)
   !discord (Sirve para compartir en el chat el enlace del servidor de discord)
-  !clip [Nombre del clip] (Sirve para crear un clip del momento actual del stream, puedes agregar un texto al final para ponerle nombre al clip, ejemplo de titulo: Hoy a Pablo le apetecía probar... el terror👻 | Comandos: !clip !discord | )
+  !clip [Nombre del clip] (Sirve para crear un clip del momento actual del stream, puedes agregar un texto al final para ponerle nombre al clip para identificarlo)
   !sr {song|url|search} (Sirve para solicitar una canción, despues del comando es obligatorio agregar el nombre de la cancion o enlace de youtube, ejemplo: !sr Helena - my chemical romance )
   !codigoswitch (Sirve para compartir el codigo de amigo para agregarnos en la consola nintendo switch)
   !java (Muestra en el chat la dirección ip del servidor de minecraft RodentPlay Creativo para la version Java)
