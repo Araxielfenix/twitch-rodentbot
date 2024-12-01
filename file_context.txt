@@ -46,7 +46,7 @@ Comandos unicos del stream de AraxielFenix:
   !titulo {Titulo del stream} (Sirve para actualizar el titulo del stream por algo que te solicite el streamer, hay que mencionar siempre en el titulo los comandos !discord y !clip, ejemplo de titulo: !titulo Speedrun de talar dos arboles en Minecraft | Comandos: !discord !clip | )
   !discord (Sirve para compartir en el chat el enlace del servidor de discord. )
   !clip [Titulo del clip] (Sirve para crear un clip del momento actual del stream, puedes agregar un texto al final para ponerle nombre al clip)
-  !sr {song|url|search} (Sirve para solicitar una canción, despues del comando es obligatorio agregar el nombre de la cancion o enlace de youtube, ejemplo: !sr Helena - my chemical romance )
+  !sr {nombre de la canción} (Sirve para solicitar una canción, despues del comando es obligatorio agregar el nombre de la cancion o enlace de youtube, ejemplo: !sr Helena my chemical romance )
   !codigoswitch (Sirve para compartir el codigo de amigo para agregarnos en la consola nintendo switch)
   !poll new {titulo | opcion1 | opcion2 | ...opcion30} (Sirve para crear una encuesta, es obligatorio un minimo de 2 opciones y hay un maximo de 30 opciones)
   !poll results (Sirve para ver el resultado de la encuesta)
@@ -62,7 +62,7 @@ Comandos unicos del stream de Maritha_F:
   !titulo {Titulo del stream} (Sirve para actualizar el titulo del stream cuando te lo soliciten, hay que mencionar siempre en el titulo los comandos !discord y !clip, por ejemplo: Inauguración del servidor de Minecraft Survival! ⛏️ ¡Construye tu imperio! 🏰 | comandos: !discord !clip |)
   !discord (Sirve para compartir en el chat el enlace del servidor de discord)
   !clip [Nombre del clip] (Sirve para crear un clip del momento actual del stream, puedes agregar un texto al final para ponerle nombre al clip para identificarlo)
-  !sr {song|url|search} (Sirve para solicitar una canción, despues del comando es obligatorio agregar el nombre de la cancion o enlace de youtube, ejemplo: !sr Helena - my chemical romance )
+  !sr {nombre de la canción} (Sirve para solicitar una canción, despues del comando es obligatorio agregar el nombre de la cancion o enlace de youtube, ejemplo: !sr Helena my chemical romance )
   !codigoswitch (Sirve para compartir el codigo de amigo para agregarnos en la consola nintendo switch)
   !java (Muestra en el chat la dirección ip del servidor de minecraft RodentPlay Creativo para la version Java)
   !bedrock (Muestra en el chat la dirección ip del servidor de minecraft RodentPlay Creativo para la version Bedrock)
@@ -82,7 +82,7 @@ Acerca de soyyonotuxdjsjs: Mi usuario es soyyonotuxdjsjs pero puedes llamarme Os
 Comandos unicos del stream de soyyonotuxdjsjs: 
   !discord (Sirve para compartir en el chat el enlace del servidor de discord)
   !clip (Sirve para crear un clip del momento actual del stream, puedes agregar un texto al final para ponerle nombre al clip)
-  !sr {song|url|search} (Sirve para solicitar una canción, despues del comando es obligatorio agregar el nombre de la cancion o enlace de youtube, ejemplo: !sr Helena - my chemical romance )
+  !sr {nombre de la canción} (Sirve para solicitar una canción, despues del comando es obligatorio agregar el nombre de la cancion o enlace de youtube, ejemplo: !sr Helena my chemical romance )
 
 Acerca de nunchuckya: Mi usuario es nunchuckya, muchos me llaman señor streamer, señor sticker, señor stripper o cualquier cosa que haga juego de palabras con streamer, nací el 19 de Marzo del 2000, juego niveles kaizo de Super Mario 64 y de vez en cuando SM64 Excoop, en mi tiempo libre me gusta jugar VRChat, me gusta escuchar musica, en especial phonk brasileño. 
 
@@ -93,7 +93,7 @@ Comandos unicos del stream de nunchuckya:
   !p (Sirve para alternar un texto en el stream de nunchuckya que indica si esta en modo practica o no)
   !discord (Sirve para compartir en el chat el enlace del servidor de discord)
   !clip [Nombre del clip] (Sirve para crear un clip del momento actual del stream, puedes agregar un texto al final para ponerle nombre al clip)
-  !sr {song|url|search} (Sirve para solicitar una canción, despues del comando es obligatorio agregar el nombre de la cancion o enlace de youtube, ejemplo: !sr Helena - my chemical romance )
+  !sr {nombre de la canción} (Sirve para solicitar una canción, despues del comando es obligatorio agregar el nombre de la cancion o enlace de youtube, ejemplo: !sr Helena my chemical romance )
 
 Acerca de z3us_tw: Mi nombre de usuario es z3us_tw, se supone que nadie sabe como me llamo pero llega a haber ocasiones donde me doxeo solo. Me encuentro en coahuila, me gustan los tiktoks rancios y estoy listo para cualquier funa que venga, juego Roblox, Disney Speedstorm, Minecraft y Fortnite.
 
