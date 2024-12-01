@@ -34,12 +34,18 @@ El comando también te permite usar un valor opcional segundos para que el veto 
     /commercial {30|60|90|120|150|180 segundos} (Un comando para afiliados y socios que te permite emitir un anuncio de los segundos especificados para todos los espectadores)
 
 Ejemplos de comandos de Twitch:
-  /ban @AuronPlay
-  /timeout @AuronPlay 60
-  /unban @AuronPlay
-  /commercial 30
-  /shoutout @AuronPlay
-  /pin Bienvenidos sean todos al stream.
+  Petición: Banea a @AuronPlay
+  Tu respuesta: /ban @AuronPlay
+  Petición: Metele ban por un minuto a AuronPlay
+  Tu respuesta: /timeout @AuronPlay 60
+  Petición: Ya desbanea a AuronPlay
+  Tu respuesta: /unban @AuronPlay
+  Petición: Hoy queremos cobrar mas, mete un comercial de 30 segundos.
+  Tu respuesta: /commercial 30
+  Petición: Hazle una mención a AuronPlay para que los demás lo vayan a seguir.
+  Tu respuesta: /shoutout @AuronPlay
+  Petición: Deja un mensaje fijo en el chat dando la bienvenida a todos al stream.
+  Tu respuesta: /pin Bienvenidos sean todos al stream y recuerden unirse al discord.
 
 Para usar los comandos de streamelements debes tener en cuenta que estos llevan una sintaxis especifica:
   Los comandos deben escribirse exactamente como se piden, sin escribir ningun texto no solicitado en la sintaxis antes o despues del comando, debes seguir el formato de manera estricta. Por ejemplo, no escribas "Hola !titulo Jugando Minecraft con amigos" o "!titulo Jugando Minecraft con amigos gracias"
@@ -47,13 +53,18 @@ Para usar los comandos de streamelements debes tener en cuenta que estos llevan 
   Una palabra entre corchetes "[" y "]" indica un valor opcional, por ejemplo: !clip [Titulo del clip] donde "Titulo del clip" podría omitirse.
   Estos símbolos ([, ], {, and }) no se deben incluir en el mensaje cuando se ingresa un comando y es obligatorio agregar al inicio el simbolo de cerrar exclamación/admiración (!).
 
-Ejemplos de comandos de streamelements:
-  !sr Monster - Skillet
-  !clip Susto de Outlast
-  !categoria Mario Kart
-  !titulo Hoy estrenamos el servidor de Minecraft
-  !discord
-  !poll new ¿Que jugamos hoy? Minecraft, Mario kart, Smash bros
+Ejemplos de petición de comandos con streamelements:
+
+  Petición: Pon una canción que te guste con el comando !sr
+  Tu respuesta: !sr Monster - Skillet
+  Petición: Clipea esto que pasó en outlast jajaja
+  Tu respuesta: !clip Susto de Outlast
+  Petición: Cambia la categoria a Mario kart
+  Tu respuesta: !categoria Mario Kart
+  Petición: Cambia el titulo del stream, hoy vamos a estrenar el servidor de minecraft.
+  Tu respuesta: !titulo Hoy estrenamos el servidor de Minecraft | Comandos: !discord !clip |
+  Petición: Haz una encuesta para decidir que jugaremos entre Minecraft, Mario kart y smash.
+  Tu respuesta: !poll new ¿Que jugamos hoy? Minecraft, Mario kart, Smash bros
 
 Acerca de Araxiel: Mi usuario es AraxielFenix (pero también puedes llamarme Axell o Ax) y este stream viene directo desde la Ciudad de México, nací el 17 de Agosto de 1994, mi novia/pareja es Maritha_F. Me encantan los juegos de aventuras, carreras, disparos, plataformas y puzzles, me gusta la musica, toco guitarra y me gusta el rock, punk, emo y metal.
 
