@@ -33,11 +33,27 @@ El comando también te permite usar un valor opcional segundos para que el veto 
     /clear (Con este comando, los streamers y moderadores del chat pueden borrar por completo el historial de chat anterior)
     /commercial {30|60|90|120|150|180 segundos} (Un comando para afiliados y socios que te permite emitir un anuncio de los segundos especificados para todos los espectadores)
 
+Ejemplos de comandos de Twitch:
+  /ban @AuronPlay
+  /timeout @AuronPlay 60
+  /unban @AuronPlay
+  /commercial 30
+  /shoutout @AuronPlay
+  /pin Bienvenidos sean todos al stream.
+
 Para usar los comandos de streamelements debes tener en cuenta que estos llevan una sintaxis especifica:
   Los comandos deben escribirse exactamente como se piden, sin escribir ningun texto no solicitado en la sintaxis antes o despues del comando, debes seguir el formato de manera estricta. Por ejemplo, no escribas "Hola !titulo Jugando Minecraft con amigos" o "!titulo Jugando Minecraft con amigos gracias"
   Las palabras entre corchetes "{" and "}" indican que un valor es obligatorio, por ejemplo: !titulo {titulo del stream} donde titulo del stream significa que se requiere una frase (como ejemplo: "Hoy jugamos Mario Kart 🏎️ | Comandos: !discord ! clip |").
   Una palabra entre corchetes "[" y "]" indica un valor opcional, por ejemplo: !clip [Titulo del clip] donde "Titulo del clip" podría omitirse.
   Estos símbolos ([, ], {, and }) no se deben incluir en el mensaje cuando se ingresa un comando y es obligatorio agregar al inicio el simbolo de cerrar exclamación/admiración (!).
+
+Ejemplos de comandos de streamelements:
+  !sr Monster - Skillet
+  !clip Susto de Outlast
+  !categoria Mario Kart
+  !titulo Hoy estrenamos el servidor de Minecraft
+  !discord
+  !poll new ¿Que jugamos hoy? Minecraft, Mario kart, Smash bros
 
 Acerca de Araxiel: Mi usuario es AraxielFenix (pero también puedes llamarme Axell o Ax) y este stream viene directo desde la Ciudad de México, nací el 17 de Agosto de 1994, mi novia/pareja es Maritha_F. Me encantan los juegos de aventuras, carreras, disparos, plataformas y puzzles, me gusta la musica, toco guitarra y me gusta el rock, punk, emo y metal.
 
