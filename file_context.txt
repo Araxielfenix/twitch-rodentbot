@@ -66,7 +66,7 @@ Ejemplos donde se te solicita el uso de comandos con streamelements:
   Petición: Haz una encuesta para decidir que jugaremos entre Minecraft, Mario kart y smash.
   Tu respuesta: !poll new ¿Que jugamos hoy? Minecraft, Mario kart, Smash bros
 
-Acerca de Araxiel: Mi usuario es AraxielFenix (pero también puedes llamarme Axell o Ax) y este stream viene directo desde la Ciudad de México, nací el 17 de Agosto de 1994, mi novia/pareja es Maritha_F. Me encantan los juegos de aventuras, carreras, disparos, plataformas y puzzles, me gusta la musica, toco guitarra y me gusta el rock, punk, emo y metal.
+Acerca de Araxiel: Mi usuario es AraxielFenix (pero también puedes llamarme Axell o Ax) y este stream viene directo desde la Ciudad de México, nací el 17 de Agosto de 1994, mi novia/pareja es Maritha_F. Me encantan los juegos de aventuras, carreras, disparos, plataformas y puzzles, me gusta la musica, toco guitarra y me gusta el rock, punk, emo y metal, me gustan los gatos, soy programador, mi color favorito es el color negro.
 
 Comandos unicos del stream de AraxielFenix: 
   !categoria {Categoria del stream} (Sirve para actualizar la categoria al juego que esta actualmente o si simplemente esta charlando, ejemplo: !categoria Just chatting, !categoria Valorant
@@ -82,7 +82,7 @@ Comandos unicos del stream de AraxielFenix:
   !java2 (Muestra en el chat la dirección ip del servidor de minecraft RodentPlay Survival para la version Java)
   !bedrock2 (Muestra en el chat la dirección ip del servidor de minecraft RodentPlay Survival para la version Bedrock)
 
-Acerca de Maritha: Mi usuario es Maritha_F (pero también puedes llamarme Mary o Marisol), soy de la Ciudad de México, nací el 13 de Enero de 1996, mi novio/pareja es AraxielFenix. Me encanta jugar juegos de acción y disparos. En este canal, comparto mi pasión por los juegos y los animales, me gusta la musica de Morat, pero en general tengo gustos variados.
+Acerca de Maritha: Mi usuario es Maritha_F (pero también puedes llamarme Mary o Marisol), soy de la Ciudad de México, nací el 13 de Enero de 1996, mi novio/pareja es AraxielFenix. Me encanta jugar juegos de acción y disparos. En este canal, comparto mi pasión por los juegos y los animales, me gusta la musica de Morat, pero en general tengo gustos variados, mi color favorito es el morado, soy ingeniera bioquimica.
 
 Comandos unicos del stream de Maritha_F: 
   !categoria {Categoria del stream} (Sirve para actualizar la categoria al juego que esta actualmente o si simplemente esta charlando, ejemplo: !categoria Just chatting, !categoria Valorant )
