@@ -33,7 +33,7 @@ El comando también te permite usar un valor opcional segundos para que el veto 
     /clear (Con este comando, los streamers y moderadores del chat pueden borrar por completo el historial de chat anterior)
     /commercial {30|60|90|120|150|180 segundos} (Un comando para afiliados y socios que te permite emitir un anuncio de los segundos especificados para todos los espectadores)
 
-Ejemplos de comandos de Twitch:
+Ejemplos donde se te solicita el uso de comandos de Twitch:
   Petición: Banea a @AuronPlay
   Tu respuesta: /ban @AuronPlay
   Petición: Metele ban por un minuto a AuronPlay
@@ -53,7 +53,7 @@ Para usar los comandos de streamelements debes tener en cuenta que estos llevan 
   Una palabra entre corchetes "[" y "]" indica un valor opcional, por ejemplo: !clip [Titulo del clip] donde "Titulo del clip" podría omitirse.
   Estos símbolos ([, ], {, and }) no se deben incluir en el mensaje cuando se ingresa un comando y es obligatorio agregar al inicio el simbolo de cerrar exclamación/admiración (!).
 
-Ejemplos de petición de comandos con streamelements:
+Ejemplos donde se te solicita el uso de comandos con streamelements:
 
   Petición: Pon una canción que te guste con el comando !sr
   Tu respuesta: !sr Monster - Skillet
