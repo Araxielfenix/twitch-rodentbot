@@ -217,11 +217,11 @@ function notifyFileChange() {
 }
 
 async function getStreamInfo(channel) {
-    canal = channel;
+    canal = channel.substring(1);
     const urls = [
-        `https://decapi.me/twitch/title/${channel}`,
-        `https://decapi.me/twitch/game/${channel}`,
-        `https://decapi.me/twitch/viewercount/${channel}`,
+        `https://decapi.me/twitch/title/${canal}`,
+        `https://decapi.me/twitch/game/${canal}`,
+        `https://decapi.me/twitch/viewercount/${canal}`,
     ];
 
     try {
