@@ -56,11 +56,9 @@ const horaCdmx = toDay.toLocaleString("es-MX", {timeZone: "America/Mexico_City"}
 console.log(`La fecha y hora en la Ciudad de México es: ${horaCdmx}`);
 fileContext += '\n La fecha y hora actual en la ciudad de México es: ' + horaCdmx;
 
-console.log(infoCanal);
-
 fileContext += '\nPor favor, responde el mensaje del espectador:';
 
-const openaiOps = new OpenAIOperations(fileContext, OPENAI_API_KEY, MODEL_NAME, HISTORY_LENGTH, infoCanal);
+const openaiOps = new OpenAIOperations(fileContext, OPENAI_API_KEY, MODEL_NAME, HISTORY_LENGTH);
 
 // Setup Twitch bot callbacks
 bot.onConnected((addr, port) => {
@@ -233,7 +231,6 @@ async function getStreamInfo(canal) {
         const categoria = await gameResponse.text();
         const espectadores = await viewerResponse.text();
 
-        infoCanal = '\nMensaje recibido en el canal: ' + channel + '\n Titulo del stream: ' + titulo + '\n Categoria del stream: ' + categoria + '\n Cantidad de espectadores: '+ espectadores + '\n';
         return '\nMensaje recibido en el canal: ' + channel + '\n Titulo del stream: ' + titulo + '\n Categoria del stream: ' + categoria + '\n Cantidad de espectadores: '+ espectadores + '\n';
     } catch (error) {
         console.error('Error al obtener la información del stream:', error);
