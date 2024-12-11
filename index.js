@@ -235,11 +235,10 @@ async function getStreamInfo(canal) {
         const espectadores = await viewerResponse.text();
 
         var infoCanal = '\nMensaje recibido en el canal: ' + channel + '\n Titulo del stream: ' + titulo + '\n Categoria del stream: ' + categoria + '\n Cantidad de espectadores: '+ espectadores + '\n';
+        export {infoCanal};
         return '\nMensaje recibido en el canal: ' + channel + '\n Titulo del stream: ' + titulo + '\n Categoria del stream: ' + categoria + '\n Cantidad de espectadores: '+ espectadores + '\n';
     } catch (error) {
         console.error('Error al obtener la información del stream:', error);
         return null; // Maneja el error devolviendo null
     }
 }
-
-export {infoCanal};
