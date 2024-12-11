@@ -60,7 +60,7 @@ console.log(infoCanal);
 
 fileContext += '\nPor favor, responde el mensaje del espectador:';
 
-const openaiOps = new OpenAIOperations(fileContext, OPENAI_API_KEY, MODEL_NAME, HISTORY_LENGTH);
+const openaiOps = new OpenAIOperations(fileContext, OPENAI_API_KEY, MODEL_NAME, HISTORY_LENGTH, infoCanal);
 
 // Setup Twitch bot callbacks
 bot.onConnected((addr, port) => {
