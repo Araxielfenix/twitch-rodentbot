@@ -26,8 +26,7 @@ export class OpenAIOperations {
         while (attempts < maxRetries) {
             try {
                 // Agregar infoCanal al mensaje del usuario a la historia
-                const formattedText = `${this.infoCanal}\n${text}`;
-                console.log(formattedText);
+                const formattedText = this.infoCanal + "\n" + text;
                 this.messages.push({ role: "user", content: formattedText });
 
                 // Verificar si el historial ha excedido el límite
