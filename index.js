@@ -56,10 +56,8 @@ const horaCdmx = toDay.toLocaleString("es-MX", {timeZone: "America/Mexico_City"}
 console.log(`La fecha y hora en la Ciudad de México es: ${horaCdmx}`);
 fileContext += '\n La fecha y hora actual en la ciudad de México es: ' + horaCdmx;
 
-if(infoCanal != ''){
-    console.log(infoCanal);
-    fileContext += infoCanal;
-}
+console.log(infoCanal);
+
 fileContext += '\nPor favor, responde el mensaje del espectador:';
 
 const openaiOps = new OpenAIOperations(fileContext, OPENAI_API_KEY, MODEL_NAME, HISTORY_LENGTH);
@@ -173,6 +171,7 @@ if (GPT_MODE === 'CHAT') {
     fs.readFile('./file_context.txt', 'utf8', (err, data) => {
         if (err) throw err;
         console.log('Reading context file and adding it in front of user prompts:');
+        fileContext += infoCanal;
         fileContext = data;
     });
 }
