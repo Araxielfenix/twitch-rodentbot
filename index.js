@@ -240,3 +240,5 @@ async function getStreamInfo(channel) {
         return null; // Maneja el error devolviendo null
     }
 }
+
+export {infoCanal};
