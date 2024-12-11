@@ -213,7 +213,7 @@ function notifyFileChange() {
 }
 
 async function getStreamInfo(channel) {
-    canal = channel.substring(1);
+    let canal = channel.substring(1);
     const urls = [
         `https://decapi.me/twitch/title/${canal}`,
         `https://decapi.me/twitch/game/${canal}`,
