@@ -6,7 +6,7 @@ import {job} from './keep_alive.js';
 import {OpenAIOperations} from './openai_operations.js';
 import {TwitchBot} from './twitch_bot.js';
 
-const { setInfoCanal } = require('./sharedData');
+const { setInfoCanal } = require('./sharedData.js');
 
 // Start keep alive cron job
 job.start();
