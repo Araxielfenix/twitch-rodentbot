@@ -41,7 +41,7 @@ const maxLength = 399;
 let fileContext = 'You are a helpful Twitch Chatbot.';
 let lastUserMessage = '';
 let lastResponseTime = 0; // Track the last response time
-var canal = '';
+var infoCanal = "AuronPlay" ;
 
 // Setup Twitch bot
 console.log('Channels: ', channels);
@@ -86,8 +86,6 @@ bot.connect(
 
 bot.onMessage(async (channel, user, message, self) => {
     if (self) return;
-    
-    canal = channel;
     
     const currentTime = Date.now();
     const elapsedTime = (currentTime - lastResponseTime) / 1000; // Time in seconds
@@ -234,11 +232,11 @@ async function getStreamInfo(canal) {
         const categoria = await gameResponse.text();
         const espectadores = await viewerResponse.text();
 
-        var infoCanal = '\nMensaje recibido en el canal: ' + channel + '\n Titulo del stream: ' + titulo + '\n Categoria del stream: ' + categoria + '\n Cantidad de espectadores: '+ espectadores + '\n';
-        export {infoCanal};
+        infoCanal = '\nMensaje recibido en el canal: ' + channel + '\n Titulo del stream: ' + titulo + '\n Categoria del stream: ' + categoria + '\n Cantidad de espectadores: '+ espectadores + '\n';
         return '\nMensaje recibido en el canal: ' + channel + '\n Titulo del stream: ' + titulo + '\n Categoria del stream: ' + categoria + '\n Cantidad de espectadores: '+ espectadores + '\n';
     } catch (error) {
         console.error('Error al obtener la información del stream:', error);
         return null; // Maneja el error devolviendo null
     }
 }
+export {infoCanal};
