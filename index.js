@@ -89,6 +89,7 @@ bot.onMessage(async (channel, user, message, self) => {
     if (self) return;
 
     infoCanal = getStreamInfo(channel);
+    fileContext += infoCanal;
     
     const currentTime = Date.now();
     const elapsedTime = (currentTime - lastResponseTime) / 1000; // Time in seconds
@@ -171,7 +172,6 @@ if (GPT_MODE === 'CHAT') {
     fs.readFile('./file_context.txt', 'utf8', (err, data) => {
         if (err) throw err;
         console.log('Reading context file and adding it in front of user prompts:');
-        fileContext += infoCanal;
         fileContext = data;
     });
 }
