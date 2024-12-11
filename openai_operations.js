@@ -3,11 +3,12 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export class OpenAIOperations {
-    constructor(file_context, history_length) {
-        this.messages = [{ role: "system", content: file_context }];
+    constructor(file_context, history_length, infoCanal) {
+        this.messages = [{ role: "system", content: `${file_context}\nEl canal actual es: ${infoCanal}.` }];
         this.apiKey = process.env.OPENAI_API_KEY;
         this.model_name = process.env.MODEL_NAME;
         this.history_length = history_length;
+        this.infoCanal = infoCanal;
     }
 
     check_history_length() {
@@ -18,14 +19,15 @@ export class OpenAIOperations {
         }
     }
 
-    async make_openrouter_call(text) {
+    async make_openrouter_call(text, infoCanal) {
         const maxRetries = 3;
         let attempts = 0;
 
         while (attempts < maxRetries) {
             try {
-                // Agregar mensaje del usuario a la historia
-                this.messages.push({ role: "user", content: text });
+                // Agregar infoCanal al mensaje del usuario a la historia
+                const formattedText = `${this.infoCanal}\n${text}`;
+                this.messages.push({ role: "user", content: formattedText });
 
                 // Verificar si el historial ha excedido el límite
                 this.check_history_length();
