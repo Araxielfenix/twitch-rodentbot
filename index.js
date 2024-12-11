@@ -42,6 +42,7 @@ let fileContext = 'You are a helpful Twitch Chatbot.';
 let lastUserMessage = '';
 let lastResponseTime = 0; // Track the last response time
 let canal = '';
+var infoCanal;
 
 // Setup Twitch bot
 console.log('Channels: ', channels);
@@ -87,7 +88,7 @@ bot.connect(
 bot.onMessage(async (channel, user, message, self) => {
     if (self) return;
     
-    global.infoCanal = getStreamInfo(channel);
+    infoCanal = getStreamInfo(channel);
     
     const currentTime = Date.now();
     const elapsedTime = (currentTime - lastResponseTime) / 1000; // Time in seconds
