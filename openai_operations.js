@@ -1,4 +1,4 @@
-import {infoCanal} from './index.js';
+const { getInfoCanal } = require('./sharedData');
 // Import dotenv para cargar variables de entorno
 import dotenv from "dotenv";
 dotenv.config();
@@ -24,8 +24,9 @@ export class OpenAIOperations {
 
         while (attempts < maxRetries) {
             try {
+                const infoCanal = getInfoCanal(); // Obtener el valor actualizado de infoCanal
                 // Agregar infoCanal al mensaje del usuario a la historia
-                const formattedText = `${global.infoCanal}\n${text}`;
+                const formattedText = `${infoCanal}\n${text}`;
                 this.messages.push({ role: "user", content: formattedText });
 
                 // Verificar si el historial ha excedido el límite
