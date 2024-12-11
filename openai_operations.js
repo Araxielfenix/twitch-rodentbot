@@ -1,4 +1,4 @@
-const { getInfoCanal } = require('./sharedData');
+const { getInfoCanal } = require('./sharedData.js');
 // Import dotenv para cargar variables de entorno
 import dotenv from "dotenv";
 dotenv.config();
