@@ -89,10 +89,6 @@ bot.connect(
 bot.onMessage(async (channel, user, message, self) => {
     if (self) return;
 
-    if(infoCanal == ''){
-        infoCanal = getStreamInfo(channel);
-    }
-    
     const currentTime = Date.now();
     const elapsedTime = (currentTime - lastResponseTime) / 1000; // Time in seconds
     
@@ -116,6 +112,8 @@ bot.onMessage(async (channel, user, message, self) => {
         }
         lastResponseTime = currentTime; // Update the last response time
 
+        infoCanal = getStreamInfo(channel);
+        
         let text = message.slice(command.length).trim();
         if (SEND_USERNAME === 'true') {
             text = `Message from user ${user.username}: ${text}`;
