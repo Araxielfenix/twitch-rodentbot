@@ -87,10 +87,8 @@ bot.connect(
 
 bot.onMessage(async (channel, user, message, self) => {
     if (self) return;
-
+    
     infoCanal = getStreamInfo(channel);
-    fileContext += infoCanal;
-    console.log(fileContext);
     
     const currentTime = Date.now();
     const elapsedTime = (currentTime - lastResponseTime) / 1000; // Time in seconds
