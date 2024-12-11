@@ -6,6 +6,8 @@ import {job} from './keep_alive.js';
 import {OpenAIOperations} from './openai_operations.js';
 import {TwitchBot} from './twitch_bot.js';
 
+const { setInfoCanal } = require('./sharedData');
+
 // Start keep alive cron job
 job.start();
 console.log(process.env);
@@ -41,7 +43,6 @@ const maxLength = 399;
 let fileContext = 'You are a helpful Twitch Chatbot.';
 let lastUserMessage = '';
 let lastResponseTime = 0; // Track the last response time
-var infoCanal = "AuronPlay" ;
 
 // Setup Twitch bot
 console.log('Channels: ', channels);
@@ -104,7 +105,7 @@ bot.onMessage(async (channel, user, message, self) => {
 
     const command = commandNames.find(cmd => message.toLowerCase().startsWith(cmd));
     if (command) {
-        getStreamInfo(canal);
+        setInfoCanal(getStreamInfo(canal));
         if (elapsedTime < COOLDOWN_DURATION) {
             bot.say(channel, `PoroSad Por favor, espera ${COOLDOWN_DURATION - elapsedTime.toFixed(1)} segundos antes de enviar otro mensaje. NotLikeThis`);
             return;
@@ -239,4 +240,3 @@ async function getStreamInfo(canal) {
         return null; // Maneja el error devolviendo null
     }
 }
-export {infoCanal};
