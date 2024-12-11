@@ -1,8 +1,8 @@
-let infoCanal = ""; // Valor inicial
+let infoCanal = ""; // Variable compartida
 
-module.exports = {
-    getInfoCanal: () => infoCanal,
-    setInfoCanal: (newInfoCanal) => {
-        infoCanal = newInfoCanal;
-    },
+// Exportar las funciones para obtener y actualizar infoCanal
+export const getInfoCanal = () => infoCanal;
+
+export const setInfoCanal = (newInfoCanal) => {
+    infoCanal = newInfoCanal;
 };
