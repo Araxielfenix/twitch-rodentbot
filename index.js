@@ -212,12 +212,12 @@ function notifyFileChange() {
     });
 }
 
-async function getStreamInfo(canal) {
-    channel = channel.substring(1);
+async function getStreamInfo(channel) {
+    canal = channel.substring(1);
     const urls = [
-        `https://decapi.me/twitch/title/${channel}`,
-        `https://decapi.me/twitch/game/${channel}`,
-        `https://decapi.me/twitch/viewercount/${channel}`,
+        `https://decapi.me/twitch/title/${canal}`,
+        `https://decapi.me/twitch/game/${canal}`,
+        `https://decapi.me/twitch/viewercount/${canal}`,
     ];
 
     try {
@@ -231,7 +231,7 @@ async function getStreamInfo(canal) {
         const categoria = await gameResponse.text();
         const espectadores = await viewerResponse.text();
 
-        return '\nMensaje recibido en el canal: ' + channel + '\n Titulo del stream: ' + titulo + '\n Categoria del stream: ' + categoria + '\n Cantidad de espectadores: '+ espectadores + '\n';
+        return '\nMensaje recibido en el canal: ' + canal + '\n Titulo del stream: ' + titulo + '\n Categoria del stream: ' + categoria + '\n Cantidad de espectadores: '+ espectadores + '\n';
     } catch (error) {
         console.error('Error al obtener la información del stream:', error);
         return null; // Maneja el error devolviendo null
