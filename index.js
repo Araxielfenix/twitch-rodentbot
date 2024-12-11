@@ -236,7 +236,7 @@ async function getStreamInfo(channel) {
         const categoria = await gameResponse.text();
         const espectadores = await viewerResponse.text();
 
-        return '\nMensaje recibido en el canal: ' + canal + ', titulo del stream: ' + titulo + ', categoria del stream: ' + categoria + ', cantidad de espectadores: '+ espectadores + '\n';
+        return '\nMensaje recibido en el canal: ' + canal + '\n Titulo del stream: ' + titulo + '\n Categoria del stream: ' + categoria + '\n Cantidad de espectadores: '+ espectadores + '\n';
     } catch (error) {
         console.error('Error al obtener la información del stream:', error);
         return null; // Maneja el error devolviendo null
