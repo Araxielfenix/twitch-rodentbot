@@ -89,6 +89,8 @@ bot.connect(
 
 bot.onMessage(async (channel, user, message, self) => {
     if (self) return;
+
+    infoCanal = getStreamInfo(channel);
     
     const currentTime = Date.now();
     const elapsedTime = (currentTime - lastResponseTime) / 1000; // Time in seconds
@@ -107,7 +109,6 @@ bot.onMessage(async (channel, user, message, self) => {
 
     const command = commandNames.find(cmd => message.toLowerCase().startsWith(cmd));
     if (command) {
-        infoCanal = getStreamInfo(channel);
         if (elapsedTime < COOLDOWN_DURATION) {
             bot.say(channel, `PoroSad Por favor, espera ${COOLDOWN_DURATION - elapsedTime.toFixed(1)} segundos antes de enviar otro mensaje. NotLikeThis`);
             return;
@@ -235,7 +236,6 @@ async function getStreamInfo(channel) {
         const categoria = await gameResponse.text();
         const espectadores = await viewerResponse.text();
 
-        console.log('\nMensaje recibido en el canal: ' + canal + ', titulo del stream: ' + titulo + ', categoria del stream: ' + categoria + ', cantidad de espectadores: '+ espectadores + '\n');
         return '\nMensaje recibido en el canal: ' + canal + ', titulo del stream: ' + titulo + ', categoria del stream: ' + categoria + ', cantidad de espectadores: '+ espectadores + '\n';
     } catch (error) {
         console.error('Error al obtener la información del stream:', error);
