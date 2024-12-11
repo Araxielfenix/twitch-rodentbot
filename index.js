@@ -42,7 +42,6 @@ let fileContext = 'You are a helpful Twitch Chatbot.';
 let lastUserMessage = '';
 let lastResponseTime = 0; // Track the last response time
 let canal = '';
-global.infoCanal = '';
 
 // Setup Twitch bot
 console.log('Channels: ', channels);
