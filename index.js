@@ -87,6 +87,7 @@ bot.connect(
 );
 
 bot.onMessage(async (channel, user, message, self) => {
+    console.log("Se recibió mensaje en el canal: " + channel);
     if (self) return;
 
     if(infoCanal == ''){
