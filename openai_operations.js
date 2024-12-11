@@ -1,3 +1,4 @@
+import {infoCanal} from './index.js';
 // Import dotenv para cargar variables de entorno
 import dotenv from "dotenv";
 dotenv.config();
