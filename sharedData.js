@@ -5,5 +5,4 @@ export const getInfoCanal = () => infoCanal;
 
 export const setInfoCanal = (newInfoCanal) => {
     infoCanal = newInfoCanal;
-    console.log(`infoCanal actualizado a: ${infoCanal}`);
 };
