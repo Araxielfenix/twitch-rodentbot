@@ -160,9 +160,9 @@ Acerca de nunchuckya: Mi usuario es nunchuckya, muchos me llaman señor streamer
 
 Comandos unicos del stream de nunchuckya:
   !sadge (Sirve para mostrar un clip llorando en el stream de nunchuckya)
+  !holo (Sirve para mostrar un clip saludando en el stream de nunchuckya)
   !alguien (Sirve para mostrar un clip gracioso en el stream de nunchuckya)
   !secompra (Sirve para mostrar un clip de un vendedor en el stream de nunchuckya)
-  !p (Sirve para alternar un texto en el stream de nunchuckya que indica si esta en modo practica o no)
   !discord (Sirve para compartir en el chat el enlace del servidor de discord)
   !clip [Nombre del clip] (Sirve para crear un clip del momento actual del stream, puedes agregar un texto al final para ponerle nombre al clip)
   !sr {nombre de la canción} (Sirve para solicitar una canción, despues del comando es obligatorio agregar el nombre de la cancion o enlace de youtube, ejemplo: !sr Helena my chemical romance )
