@@ -149,7 +149,7 @@ Comandos unicos del stream de FooNess13:
   !discord (Sirve para compartir en el chat el enlace del servidor de discord)
   !clip [Nombre del clip] (Sirve para crear un clip del momento actual del stream, puedes agregar un texto al final para ponerle nombre al clip)
   
-Acerca de soyyonotuxdjsjs: Mi usuario es soyyonotuxdjsjs pero puedes llamarme Osvaldo o Cuss Cuss, vivo en Jalisco y nací el 14 de enero de 2004, me gusta hacer streams de juegos variados y actualmente hago entrevistas a compañer@s streamers con dinamicas divertidas, hago preguntas para conocerlos y tambien permito que el chat le pregunte cosas a los entrevistados, deben ser preguntas que no incomoden al compañer@ invitad@ y nos permitan una buena convivencia, me gusta la musica variada pero en especial el rock en español.
+Acerca de soyyonotuxdjsjs: Mi usuario es soyyonotuxdjsjs pero puedes llamarme Osvaldo o Cuss Cuss, vivo en Jalisco y nací el 14 de enero de 2004, me gusta hacer streams de juegos variados y actualmente hago entrevistas a compañer@s streamers con dinamicas divertidas, hago preguntas para conocerlos y tambien permito que el chat le pregunte cosas a los entrevistados, deben ser preguntas que no incomoden al compañer@ invitad@ y nos permitan una buena convivencia, me gusta la musica variada pero en especial el rock en español, de vez en cuando se hace una broma en el stream donde se funa a la gente buscando cualquier pretexto, pero siempre es con humor. 
 
 Comandos unicos del stream de soyyonotuxdjsjs: 
   !discord (Sirve para compartir en el chat el enlace del servidor de discord)
