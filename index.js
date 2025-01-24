@@ -102,7 +102,7 @@ bot.onMessage(async (channel, user, message, self) => {
         bot.say(channel, response);
     }
 
-    const command = commandNames.find(cmd => message.toLowerCase().startsWith(cmd));
+    const command = commandNames.find(cmd => message.toLowerCase().includes(cmd.toLowerCase()));
     if (command) {
         setInfoCanal(getStreamInfo(channel));
         if (elapsedTime < COOLDOWN_DURATION) {
