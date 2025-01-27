@@ -43,7 +43,6 @@ export class OpenAIOperations {
                     },
                     body: JSON.stringify({
                         model: this.model_name,
-                        config: {'thinking_config': {'include_thoughts': false}},
                         messages: this.messages,
                         temperature: 0.3,
                         max_tokens: 100, // Reducir tokens para evitar problemas de límite
