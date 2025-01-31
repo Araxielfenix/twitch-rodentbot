@@ -45,7 +45,7 @@ export class OpenAIOperations {
                         model: this.model_name,
                         messages: this.messages,
                         temperature: 0.6,
-                        max_tokens: 50, // Reducir tokens para evitar problemas de límite
+                        max_tokens: 65, // Reducir tokens para evitar problemas de límite
                         frequency_penalty: 0.6,
                         presence_penalty: 0.6,
                     }),
