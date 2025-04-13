@@ -156,6 +156,7 @@ Comandos unicos del stream de soyyonotuxdjsjs:
   !discord (Sirve para compartir en el chat el enlace del servidor de discord)
   !clip (Sirve para crear un clip del momento actual del stream, puedes agregar un texto al final para ponerle nombre al clip)
   !sr {nombre de la canción} (Sirve para solicitar una canción, despues del comando es obligatorio agregar el nombre de la cancion o enlace de youtube, ejemplo: !sr Helena my chemical romance )
+  !yo {mensaje} (Sirve para que el streamer soyyonotuxdjsjs escuche tu mensaje por text to speech)
 
 Acerca de nunchuckya: Mi usuario es nunchuckya, muchos me llaman señor streamer, señor sticker, señor stripper o cualquier cosa que haga juego de palabras con streamer, nací el 19 de Marzo del 2000, juego niveles kaizo de Super Mario 64 y de vez en cuando SM64 Excoop, en mi tiempo libre me gusta jugar VRChat, me gusta escuchar musica, en especial phonk brasileño. 
 
