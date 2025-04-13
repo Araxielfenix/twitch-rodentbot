@@ -18,6 +18,20 @@ export class OpenAIOperations {
         }
     }
 
+// Agregar el contexto del canal al prompt enviado a OpenRouter
+async make_openrouter_call(userMessage) {
+    const completePrompt = `${this.fileContext}\n\n${userMessage}`;
+    const response = await this.callOpenRouter(completePrompt);
+    return response;
+}
+
+// Otra función para manejar contextos por canal
+async make_openrouter_call_with_context(userMessage, streamContext) {
+    const completePrompt = `${this.fileContext}\n\n${streamContext}\n\n${userMessage}`;
+    const response = await this.callOpenRouter(completePrompt);
+    return response;
+}
+    
     async make_openrouter_call(text) {
         const maxRetries = 3;
         let attempts = 0;
