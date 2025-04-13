@@ -85,38 +85,46 @@ bot.connect(
 );
 
 bot.onMessage(async (channel, user, message, self) => {
-    if (self) return;
+    if (self) return; // Ignorar los mensajes del bot
     
     const currentTime = Date.now();
-    const elapsedTime = (currentTime - lastResponseTime) / 1000; // Time in seconds
-    
+    const elapsedTime = (currentTime - lastResponseTime) / 1000; // Tiempo transcurrido en segundos
+
+    // Verificar si el mensaje es destacado (channel points)
     if (ENABLE_CHANNEL_POINTS === 'true' && user['msg-id'] === 'highlighted-message') {
         console.log(`Highlighted message: ${message}`);
         if (elapsedTime < COOLDOWN_DURATION) {
             bot.say(channel, `PoroSad Por favor, espera ${COOLDOWN_DURATION - elapsedTime.toFixed(1)} segundos antes de enviar otro mensaje. NotLikeThis`);
             return;
         }
-        lastResponseTime = currentTime; // Update the last response time
+        lastResponseTime = currentTime; // Actualizar tiempo del último mensaje
 
-        const response = await openaiOps.make_openrouter_call(message);
+        // Obtener información del stream
+        const streamInfo = await getStreamInfo(channel);
+        const response = await openaiOps.make_openrouter_call(`${streamInfo}\n\n${message}`);
         bot.say(channel, response);
     }
 
+    // Verificar si el mensaje contiene un comando reconocido
     const command = commandNames.find(cmd => message.toLowerCase().includes(cmd.toLowerCase()));
     if (command) {
-        setInfoCanal(getStreamInfo(channel));
+        setInfoCanal(await getStreamInfo(channel));
         if (elapsedTime < COOLDOWN_DURATION) {
             bot.say(channel, `PoroSad Por favor, espera ${COOLDOWN_DURATION - elapsedTime.toFixed(1)} segundos antes de enviar otro mensaje. NotLikeThis`);
             return;
         }
-        lastResponseTime = currentTime; // Update the last response time
-        
+        lastResponseTime = currentTime; // Actualizar tiempo del último mensaje
+
         let text = message.slice(command.length).trim();
         if (SEND_USERNAME === 'true') {
             text = `Message from user ${user.username}: ${text}`;
         }
 
-        const response = await openaiOps.make_openrouter_call(text);
+        // Obtener información del stream
+        const streamInfo = await getStreamInfo(channel);
+        
+        // Pasar la información del canal como contexto
+        const response = await openaiOps.make_openrouter_call(`${streamInfo}\n\n${text}`);
         if (response.length > maxLength) {
             const messages = response.match(new RegExp(`.{1,${maxLength}}`, 'g'));
             messages.forEach((msg, index) => {
