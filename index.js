@@ -61,12 +61,23 @@ fileContext += '\nPor favor, responde de manera resumida el mensaje del espectad
 
 const openaiOps = new OpenAIOperations(fileContext, OPENAI_API_KEY, MODEL_NAME, HISTORY_LENGTH);
 
+let currentStreamInfo = '';
+
+async function updateStreamInfo() {
+    try {
+        currentStreamInfo = await getStreamInfo(`#${TWITCH_USER}`);
+        console.log('Información del stream actualizada:', currentStreamInfo);
+    } catch (error) {
+        console.error('Error al actualizar la información del stream:', error);
+    }
+}
+
 // Setup Twitch bot callbacks
 bot.onConnected((addr, port) => {
-    console.log(`* Connected to ${addr}:${port}`);
+    console.log(`* Conectandome a ${addr}:${port}`);
     channels.forEach(channel => {
-        console.log(`* Joining ${channel}`);
-        console.log(`* Saying hello in ${channel}`);
+        console.log(`* Entrando al canal de ${channel}`);
+        console.log(`* Correctamente presente con ${channel}`);
     });
 });
 
@@ -78,6 +89,8 @@ bot.onDisconnected(reason => {
 bot.connect(
     () => {
         console.log('Bot connected!');
+        updateStreamInfo();
+        setInterval(updateStreamInfo, 60000);
     },
     error => {
         console.error('Bot couldn\'t connect!', error);
@@ -100,14 +113,14 @@ bot.onMessage(async (channel, user, message, self) => {
         lastResponseTime = currentTime; // Actualizar tiempo del último mensaje
 
         // Obtener información del stream
-        const streamInfo = await getStreamInfo(channel);
-        const response = await openaiOps.make_openrouter_call(`${streamInfo}\n\n${message}`);
+        const response = await openaiOps.make_openrouter_call(`${currentStreamInfo}\n\n${message}`);
         bot.say(channel, response);
     }
 
     // Verificar si el mensaje contiene un comando reconocido
     const command = commandNames.find(cmd => message.toLowerCase().includes(cmd.toLowerCase()));
     if (command) {
+        updateStreamInfo()
         setInfoCanal(await getStreamInfo(channel));
         if (elapsedTime < COOLDOWN_DURATION) {
             bot.say(channel, `PoroSad Por favor, espera ${COOLDOWN_DURATION - elapsedTime.toFixed(1)} segundos antes de enviar otro mensaje. NotLikeThis`);
@@ -121,7 +134,7 @@ bot.onMessage(async (channel, user, message, self) => {
         }
 
         // Obtener información del stream
-        const streamInfo = await getStreamInfo(channel);
+        const streamInfo = await updateStreamInfo();
         
         // Pasar la información del canal como contexto
         const response = await openaiOps.make_openrouter_call(`${streamInfo}\n\n${text}`);
