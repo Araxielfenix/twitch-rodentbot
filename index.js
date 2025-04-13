@@ -222,7 +222,7 @@ function notifyFileChange() {
 }
 
 async function getStreamInfo(channel) {
-    canal = channel.substring(1);
+    canal = channel.substring(1); // Eliminar el prefijo "#" del nombre del canal
     const urls = [
         `https://decapi.me/twitch/title/${canal}`,
         `https://decapi.me/twitch/game/${canal}`,
@@ -240,9 +240,9 @@ async function getStreamInfo(channel) {
         const categoria = await gameResponse.text();
         const espectadores = await viewerResponse.text();
 
-        return '\nMensaje recibido en el canal: ' + canal + '\n Titulo del stream: ' + titulo + '\n Categoria del stream: ' + categoria + '\n Cantidad de espectadores: '+ espectadores + '\n';
+        return `\nMensaje recibido en el canal: ${canal}\nTitulo del stream: ${titulo}\nCategoria del stream: ${categoria}\nCantidad de espectadores: ${espectadores}\n`;
     } catch (error) {
         console.error('Error al obtener la información del stream:', error);
-        return null; // Maneja el error devolviendo null
+        return `\nMensaje recibido en el canal: ${canal}\nNo se pudo obtener la información del stream.\n`;
     }
 }
