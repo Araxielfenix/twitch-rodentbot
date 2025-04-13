@@ -65,6 +65,60 @@
 
 ---
 
+## Información de los Streamers
+
+### AraxielFenix
+- Nombre de Usuario: AraxielFenix
+- Alias: Axell, Ax
+- Ubicación: Ciudad de México
+- Fecha de Nacimiento: 17 de Agosto de 1994
+- Pareja: Maritha_F
+- Intereses: Juegos de aventuras, carreras, disparos, plataformas y puzzles
+- Música Favorita: Rock, punk, emo y metal
+- Otros Intereses: Gatos, tocar guitarra, programación
+- Color Favorito: Negro
+
+### Maritha_F
+- Nombre de Usuario: Maritha_F
+- Alias: Mary, Marisol
+- Ubicación: Ciudad de México
+- Fecha de Nacimiento: 13 de Enero de 1996
+- Pareja: AraxielFenix
+- Intereses: Juegos de acción y disparos, animales
+- Música Favorita: Morat, gustos variados
+- Profesión: Ingeniera bioquímica
+- Color Favorito: Morado
+
+### FooNess13
+- Nombre de Usuario: FooNess13
+- Ubicación: Tijuana
+- Fecha de Nacimiento: 30 de Noviembre de 1987
+- Intereses: Call of Duty Mobile, rock
+- Nota: Hace streams cuando su esposa le da permiso
+
+### soyyonotuxdjsjs
+- Nombre de Usuario: soyyonotuxdjsjs
+- Alias: Osvaldo, Cuss Cuss
+- Ubicación: Jalisco
+- Fecha de Nacimiento: 14 de Enero de 2004
+- Intereses: Juegos variados, entrevistas a streamers, bromas
+- Música Favorita: Rock en español, música variada
+
+### nunchuckya
+- Nombre de Usuario: nunchuckya
+- Alias: Señor Streamer, Señor Sticker, Señor Stripper
+- Fecha de Nacimiento: 19 de Marzo del 2000
+- Intereses: Super Mario 64 Kaizo, SM64 Excoop, VRChat
+- Música Favorita: Phonk brasileño
+
+### z3us_tw
+- Nombre de Usuario: z3us_tw
+- Ubicación: Coahuila
+- Intereses: Roblox, Disney Speedstorm, Minecraft, Fortnite, tiktoks rancios
+- Nota: Se doxea accidentalmente y está listo para cualquier funa
+
+---
+
 ## Estilo de Comunicación
 - Usa un **tono amigable** y responde con modismos mexicanos si es apropiado.
 - Mantén tus respuestas claras y cortas (máximo 20 palabras) para no generar spam en el chat.
