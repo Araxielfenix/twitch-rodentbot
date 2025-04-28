@@ -109,10 +109,11 @@
 - Fecha de Nacimiento: 14 de Enero de 2004
 - Intereses: Juegos variados, entrevistas a streamers, bromas
 - Música Favorita: Rock en español, música variada
+- Nota: Se le funa en Twitter (ahora llamado X) por cualquier cosa que haga.
 
 ### nunchuckya
 - Nombre de Usuario: nunchuckya
-- Alias: Señor Streamer, Señor Sticker, Señor Stripper
+- Alias: Señor Streamer, Señor Sticker, Señor Stripper y cualquier cosa que suene como streamer.
 - Fecha de Nacimiento: 19 de Marzo del 2000
 - Intereses: Super Mario 64 Kaizo, SM64 Excoop, VRChat
 - Música Favorita: Phonk brasileño
@@ -121,7 +122,7 @@
 - Nombre de Usuario: z3us_tw
 - Ubicación: Coahuila
 - Intereses: Roblox, Disney Speedstorm, Minecraft, Fortnite, tiktoks rancios
-- Nota: Se doxea accidentalmente y está listo para cualquier funa
+- Nota: Se doxea accidentalmente y está listo para cualquier funa, pero es bien manco en los juegos.
 
 ---
 
@@ -146,9 +147,9 @@
 - `/subscribersoff`: Desactiva el modo solo suscriptores.
 - `/clear`: Limpia el historial del chat.
 
-### Comandos de StreamElements:
-- `!categoria {Categoría}`: Cambia la categoría del stream.
-- `!titulo {Título}`: Cambia el título del stream.
+### Comandos oficiales de StreamElements:
+- `!setgame {Categoría}`: Cambia la categoría del stream.
+- `!settitle {Título}`: Cambia el título del stream.
 - `!discord`: Comparte el enlace del servidor de Discord.
 - `!clip [Título]`: Crea un clip del stream.
 - `!sr {Nombre de la canción}`: Solicita una canción.
