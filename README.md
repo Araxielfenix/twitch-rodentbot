@@ -1,7 +1,5 @@
 # AI Twitch Bot Documentation
 
-**Nota Importante: Cyclic ya no es compatible para implementación. Por favor, utiliza Render para desplegar este bot.**
-
 Tu apoyo significa el mundo para mí ❤️
 
 ☕ [Apóyame con una donación](https://streamelements.com/araxielfenix/tip) ☕
