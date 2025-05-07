@@ -12,11 +12,11 @@ Tu apoyo significa el mundo para mí ❤️
 
 ## Overview
 
-Este es un chatbot sencillo hecho en Node.js con integración de ChatGPT, diseñado para trabajar con streams de Twitch. Utiliza el framework Express y puede operar en dos modos: modo chat (con contexto de mensajes previos) o modo prompt (sin contexto).
+Este es un chatbot sencillo hecho en Node.js con integración de ChatGPT/OpenRouter, diseñado para trabajar con streams de Twitch. Utiliza el framework Express y puede operar en dos modos: modo chat (con contexto de mensajes previos) o modo prompt (sin contexto).
 
 ## Features
 
-- Responde a comandos de chat de Twitch con respuestas generadas por ChatGPT.
+- Responde a comandos de chat de Twitch con respuestas generadas por ChatGPT/OpenRouter.
 - Puede operar en modo chat con contexto o en modo prompt sin contexto.
 - Soporte para respuestas con texto a voz (TTS).
 - Personalizable mediante variables de entorno.
