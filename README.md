@@ -1,4 +1,4 @@
-# ChatGPT Twitch Bot Documentation
+# AI Twitch Bot Documentation
 
 **Nota Importante: Cyclic ya no es compatible para implementación. Por favor, utiliza Render para desplegar este bot.**
 
