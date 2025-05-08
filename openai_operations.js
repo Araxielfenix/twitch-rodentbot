@@ -89,7 +89,7 @@ async make_openrouter_call_with_context(userMessage, streamContext) {
                 console.error("Error during OpenRouter call:", error);
                 attempts += 1;
                 if (attempts >= maxRetries) {
-                    return "Tuve un problema para entender tu mensaje, por favor intenta más tarde.";
+                    console.log("Tuve un problema para entender tu mensaje, por favor intenta más tarde.");
                 }
             }
         }
