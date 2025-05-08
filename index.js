@@ -69,12 +69,6 @@ const bot = new TwitchBot(TWITCH_USER, TWITCH_AUTH, channels, OPENAI_API_KEY, EN
 
 // Setup OpenAI operations
 fileContext = fs.readFileSync('./file_context.txt', 'utf8');
-const toDay = new Date();
-const horaCdmx = toDay.toLocaleString("es-MX", {timeZone: "America/Mexico_City"});
-
-console.log(`La fecha y hora en la Ciudad de México es: ${horaCdmx}`);
-fileContext += '\n La fecha y hora actual en la ciudad de México es: ' + horaCdmx;
-
 fileContext += '\nPor favor, responde de manera resumida el mensaje del espectador: ';
 
 const openaiOps = new OpenAIOperations(fileContext, OPENAI_API_KEY, MODEL_NAME, HISTORY_LENGTH);
