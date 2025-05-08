@@ -22,7 +22,8 @@ app.set('view engine', 'ejs');
 // Load environment variables
 const GPT_MODE = process.env.GPT_MODE || 'CHAT';
 const HISTORY_LENGTH = process.env.HISTORY_LENGTH || 20;
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY || '';
+const OPENAI_API_KEY_1 = process.env.OPENAI_API_KEY_1 || '';
+const OPENAI_API_KEY_2 = process.env.OPENAI_API_KEY_2 || '';
 const MODEL_NAME = process.env.MODEL_NAME || 'google/gemma-2-9b-it:free';
 const TWITCH_USER = process.env.TWITCH_USER || 'RodentPlay';
 const TWITCH_AUTH = process.env.TWITCH_AUTH || 'oauth:a34lxh7cbszmea7icbyxhtyeinvyoo';
@@ -33,8 +34,23 @@ const ENABLE_TTS = process.env.ENABLE_TTS || 'false';
 const ENABLE_CHANNEL_POINTS = process.env.ENABLE_CHANNEL_POINTS || 'false';
 const COOLDOWN_DURATION = parseInt(process.env.COOLDOWN_DURATION, 10) || 10; // Cooldown duration in seconds
 
-if (!OPENAI_API_KEY) {
-    console.error('No OPENAI_API_KEY found. Please set it as an environment variable.');
+let OPENAI_API_KEY = OPENAI_API_KEY_1;
+
+let currentApiKey = 1; // 1 para la primera API key, 2 para la segunda
+
+if (!OPENAI_API_KEY_1 && !OPENAI_API_KEY_2) {
+    console.error('No se encontraron las API keys. Por favor, configúralas como variables de entorno.');
+}
+
+// Función para alternar entre las API keys
+function toggleApiKey() {
+    if (OPENAI_API_KEY === OPENAI_API_KEY_1 && OPENAI_API_KEY_2) {
+        OPENAI_API_KEY = OPENAI_API_KEY_2;
+        console.log('Cambiando a la segunda API key');
+    } else if (OPENAI_API_KEY === OPENAI_API_KEY_2 && OPENAI_API_KEY_1) {
+        OPENAI_API_KEY = OPENAI_API_KEY_1;
+        console.log('Cambiando a la primera API key');
+    }
 }
 
 const commandNames = COMMAND_NAME.split(',').map(cmd => cmd.trim().toLowerCase());
@@ -112,9 +128,22 @@ bot.onMessage(async (channel, user, message, self) => {
         }
         lastResponseTime = currentTime; // Actualizar tiempo del último mensaje
 
-        // Obtener información del stream
+        try {
+        // Intentar responder con la API key activa
         const response = await openaiOps.make_openrouter_call(`${currentStreamInfo}\n\n${message}`);
         bot.say(channel, response);
+    } catch (error) {
+        console.error('Error con la API key actual:', error);
+        // Cambia a la otra API key y reintenta
+        toggleApiKey();
+        try {
+            const response = await openaiOps.make_openrouter_call(`${currentStreamInfo}\n\n${message}`);
+            bot.say(channel, response);
+        } catch (error) {
+            console.error('Error con la segunda API key:', error);
+            bot.say(channel, 'Tuve un problema para entender tu mensaje, por favor intenta más tarde.');
+        }
+    }
     }
 
     // Verificar si el mensaje contiene un comando reconocido
