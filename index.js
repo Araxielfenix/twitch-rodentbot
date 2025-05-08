@@ -130,22 +130,9 @@ bot.onMessage(async (channel, user, message, self) => {
         }
         lastResponseTime = currentTime; // Actualizar tiempo del último mensaje
 
-        try {
-        // Intentar responder con la API key activa
+        // Obtener información del stream
         const response = await openaiOps.make_openrouter_call(`${currentStreamInfo}\n\n${message}`);
         bot.say(channel, response);
-    } catch (error) {
-        console.error(`Error con la API key actual (API key ${currentApiKey}):`, error);
-        // Cambia a la otra API key y reintenta
-        toggleApiKey();
-        try {
-            const response = await openaiOps.make_openrouter_call(`${currentStreamInfo}\n\n${message}`);
-            bot.say(channel, response);
-        } catch (error) {
-            console.error(`Error con la segunda API key (API key ${currentApiKey}):`, error);
-            //bot.say(channel, 'Tuve un problema para entender tu mensaje, por favor intenta más tarde.');
-        }
-    }
     }
 
     // Verificar si el mensaje contiene un comando reconocido
@@ -189,12 +176,6 @@ bot.onMessage(async (channel, user, message, self) => {
             }
         }
     }
-});
-
-app.ws('/check-for-updates', (ws, req) => {
-    ws.on('message', message => {
-        // Handle WebSocket messages (if needed)
-    });
 });
 
 const messages = [{role: 'system', content: 'You are a helpful Twitch Chatbot.'}];
