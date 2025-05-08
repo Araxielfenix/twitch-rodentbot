@@ -126,16 +126,6 @@
 - Nota: Se doxea accidentalmente y está listo para cualquier funa, pero es bien manco en los juegos.
 - Aniversario del canal: 10 de Enero del 2022
 
-### RDChopper
-- Nombre de Usuario: RDChopper
-- Alias: Chopper, chichón, el Sopas
-- Ubicación: Chihuahua
-- Edad: 34 años (en 2025)
-- Genero: Masculino
-- Intereses: Zelda: a link to the past, Super Mario RPG, Megaman X, juegos variados, juegos de FromSoftware, the Elder Scrolls y Fallout
-- Aniversario del canal: 6 de Mayo
-- Nota: Le gustan los chistes de doble sentido (para adultos) y los piropos.
-
 ---
 
 ### Comandos Generales de Twitch:
