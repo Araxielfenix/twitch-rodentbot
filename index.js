@@ -44,10 +44,12 @@ if (!OPENAI_API_KEY_1 && !OPENAI_API_KEY_2) {
 
 // Función para alternar entre las API keys
 function toggleApiKey() {
-    if (OPENAI_API_KEY === OPENAI_API_KEY_1 && OPENAI_API_KEY_2) {
+    if (currentApiKey === 1 && OPENAI_API_KEY_2) {
+        currentApiKey = 2;
         OPENAI_API_KEY = OPENAI_API_KEY_2;
         console.log('Cambiando a la segunda API key');
-    } else if (OPENAI_API_KEY === OPENAI_API_KEY_2 && OPENAI_API_KEY_1) {
+    } else if (currentApiKey === 2 && OPENAI_API_KEY_1) {
+        currentApiKey = 1;
         OPENAI_API_KEY = OPENAI_API_KEY_1;
         console.log('Cambiando a la primera API key');
     }
@@ -133,15 +135,15 @@ bot.onMessage(async (channel, user, message, self) => {
         const response = await openaiOps.make_openrouter_call(`${currentStreamInfo}\n\n${message}`);
         bot.say(channel, response);
     } catch (error) {
-        console.error('Error con la API key actual:', error);
+        console.error(`Error con la API key actual (API key ${currentApiKey}):`, error);
         // Cambia a la otra API key y reintenta
         toggleApiKey();
         try {
             const response = await openaiOps.make_openrouter_call(`${currentStreamInfo}\n\n${message}`);
             bot.say(channel, response);
         } catch (error) {
-            console.error('Error con la segunda API key:', error);
-            bot.say(channel, 'Tuve un problema para entender tu mensaje, por favor intenta más tarde.');
+            console.error(`Error con la segunda API key (API key ${currentApiKey}):`, error);
+            //bot.say(channel, 'Tuve un problema para entender tu mensaje, por favor intenta más tarde.');
         }
     }
     }
