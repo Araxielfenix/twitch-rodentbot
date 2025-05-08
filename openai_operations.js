@@ -6,10 +6,32 @@ dotenv.config();
 export class OpenAIOperations {
     constructor(file_context, history_length, infoCanal) {
         this.messages = [{ role: "system", content: `${file_context}` }];
-        this.apiKey = process.env.OPENAI_API_KEY;
+        this.apiKey = process.env.OPENAI_API_KEY;this.apiKey1 = process.env.OPENAI_API_KEY_1;
+        this.apiKey2 = process.env.OPENAI_API_KEY_2;
+        this.currentApiKey = 1; // Indica qué clave está activa
+        this.apiKey = this.apiKey1; // Inicializa con la primera clave
         this.model_name = process.env.MODEL_NAME;
         this.history_length = history_length;
+
+        if (!this.apiKey1 && !this.apiKey2) {
+            console.error('No se encontraron las API keys. Por favor, configúralas como variables de entorno.');
+        }
     }
+
+    // Lógica para alternar entre las API keys
+    toggleApiKey() {
+        if (this.currentApiKey === 1 && this.apiKey2) {
+            this.currentApiKey = 2;
+            this.apiKey = this.apiKey2;
+            console.log('Cambiando a la segunda API key');
+        } else if (this.currentApiKey === 2 && this.apiKey1) {
+            this.currentApiKey = 1;
+            this.apiKey = this.apiKey1;
+            console.log('Cambiando a la primera API key');
+        }
+    }
+
+    // Verificar si el historial ha excedido el límite
     check_history_length() {
         console.log(`Conversations in History: ${((this.messages.length / 2) - 1)}/${this.history_length}`);
         if (this.messages.length > ((this.history_length * 2) + 1)) {
@@ -17,7 +39,8 @@ export class OpenAIOperations {
             this.messages.splice(1, 2);
         }
     }
-
+    
+// Método principal para realizar la llamada a OpenAI con manejo del error 401
 // Agregar el contexto del canal al prompt enviado a OpenRouter
 async make_openrouter_call(userMessage) {
     const completePrompt = `${this.fileContext}\n\n${userMessage}`;
@@ -68,7 +91,15 @@ async make_openrouter_call_with_context(userMessage, streamContext) {
                 // Verificar si la respuesta fue exitosa
                 if (!response.ok) {
                     console.error(`HTTP Error: ${response.status} - ${response.statusText}`);
-                    throw new Error(`HTTP Error: ${response.status}`);
+                    
+                    // Manejo de error 401 para cambiar la API key
+                    if (response.status === 401) {
+                        console.log("API key inválida. Cambiando a una nueva API key...");
+                        this.toggleApiKey(); // Cambiar a la siguiente clave
+                        continue; // Reintentar con la nueva clave
+                    } else {
+                        throw new Error(`HTTP Error: ${response.status}`);
+                    }
                 }
 
                 const data = await response.json();
