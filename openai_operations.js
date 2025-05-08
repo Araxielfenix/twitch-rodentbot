@@ -5,13 +5,7 @@ dotenv.config();
 
 export class OpenAIOperations {
     constructor(file_context, history_length, infoCanal) {
-        const toDay = new Date();
-        const horaCdmx = toDay.toLocaleString("es-MX", { timeZone: "America/Mexico_City" });
-
-        this.messages = [
-            { role: "system", content: `${file_context}` },
-            { role: "system", content: `La fecha y hora actual en la Ciudad de México es: ${horaCdmx}` }
-        ];
+        this.messages = [{ role: "system", content: `${file_context}` }];
         this.apiKey = process.env.OPENAI_API_KEY;this.apiKey1 = process.env.OPENAI_API_KEY_1;
         this.apiKey2 = process.env.OPENAI_API_KEY_2;
         this.currentApiKey = 1; // Indica qué clave está activa
@@ -71,13 +65,6 @@ async make_openrouter_call_with_context(userMessage, streamContext) {
                 // Agregar infoCanal al mensaje del usuario a la historia
                 const formattedText = `${infoCanal}\n${text}`;
                 this.messages.push({ role: "user", content: formattedText });
-
-                const toDay = new Date();
-                const horaCdmx = toDay.toLocaleString("es-MX", { timeZone: "America/Mexico_City" });
-                
-                // Agregar la fecha y hora actual al contexto antes de enviar el mensaje
-                this.messages.push({ role: "system", content: `La fecha y hora actual en la Ciudad de México es: ${horaCdmx}` });
-                this.messages.push({ role: "user", content: userMessage });
                 
                 // Verificar si el historial ha excedido el límite
                 this.check_history_length();
