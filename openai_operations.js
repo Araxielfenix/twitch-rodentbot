@@ -93,8 +93,8 @@ async make_openrouter_call_with_context(userMessage, streamContext) {
                     console.error(`HTTP Error: ${response.status} - ${response.statusText}`);
                     
                     // Manejo de error 401 para cambiar la API key
-                    if (response.status === 401) {
-                        console.log("API key inválida. Cambiando a una nueva API key...");
+                    if (response.status === 401 || response.status === 429) {
+                        console.log("API key inválida o se ha alcanzado el limite de tokens. Cambiando a una nueva API key...");
                         this.toggleApiKey(); // Cambiar a la siguiente clave
                         continue; // Reintentar con la nueva clave
                     } else {
