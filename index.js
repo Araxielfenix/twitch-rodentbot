@@ -150,16 +150,16 @@ bot.onMessage(async (channel, user, message, self) => {
         
         // Pasar la información del canal como contexto
         const response = await openaiOps.make_openrouter_call(`${streamInfo}\n\n${text}`);
-        if (response.length > maxLength) {
+        //if (response.length > maxLength) {
             const messages = response.match(new RegExp(`.{1,${maxLength}}`, 'g'));
             messages.forEach((msg, index) => {
                 setTimeout(() => {
                     bot.say(channel, msg);
                 }, 1000 * index);
             });
-        } else {
-            bot.say(channel, response);
-        }
+       //} else {
+        //    bot.say(channel, response);
+        //}
 
         if (ENABLE_TTS === 'true') {
             try {
