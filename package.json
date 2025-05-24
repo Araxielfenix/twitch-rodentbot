@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon discord-bot.js",
-    "start": "node index.js"
+    "start": "node discord-bot.js"
   },
   "repository": {
     "type": "git",
