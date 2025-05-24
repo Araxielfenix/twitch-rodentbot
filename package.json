@@ -10,12 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Araxielfenix/twitch-rodentbot.git"
+    "url": "git+https://github.com/pedrojlazevedo/twitch-chatgpt.git"
   },
-  "author": "AraxielFenix",
+  "author": "Pedro Azevedo",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Araxielfenix/twitch-rodentbot/issues"
+    "url": "https://github.com/pedrojlazevedo/twitch-chatgpt/issues"
   },
   "homepage": "https://github.com/Araxielfenix/twitch-rodentbot#readme",
   "dependencies": {
