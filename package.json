@@ -5,6 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "dev": "nodemon discord-bot.js",
     "start": "node index.js"
   },
   "repository": {
@@ -29,5 +30,8 @@
     "dotenv": "^16.0.3",
     "discord.js": "^14.14.1",
     "ws": "^8.14.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
   }
 }
