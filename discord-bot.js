@@ -37,10 +37,6 @@ const shapes_client = new OpenAI({
 
 const MODEL_ID = `${process.env.MODEL_NAME}`;
 
-const botP =
-  "RodentBot es un inteligente moderador mexicano que nació el 17 de enero del 2024. Forma parte de la comunidad RodentPlay. Tiene personalidad divertida, usa emojis, reconoce nombres y hace juegos, pero también sabe moderar y dar la bienvenida.";
-
-
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -77,7 +73,6 @@ client.on("ready", () => {
     const response = await shapes_client.chat.completions.create({
       model: MODEL_ID,
       messages: [
-        { role: "system", content: botP },
         { role: "user", content: prompt },
       ],
       max_tokens: 200,
@@ -100,7 +95,6 @@ client.on("guildMemberAdd", async (member) => {
     const response = await shapes_client.chat.completions.create({
       model: MODEL_ID,
       messages: [
-        { role: "system", content: botP },
         { role: "user", content: prompt },
       ],
       max_tokens: 200,
@@ -222,7 +216,6 @@ client.on("messageCreate", async (message) => {
     const response = await shapes_client.chat.completions.create({
       model: MODEL_ID,
       messages: [
-        { role: "system", content: botP },
         { role: "user", content },
       ],
       max_tokens: 500,
