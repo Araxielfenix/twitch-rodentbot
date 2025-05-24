@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "concurrently \"node index.js\" \"node src/discord-bot.js\""
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -28,7 +28,6 @@
     "tmi.js": "^1.8.5",
     "dotenv": "^16.0.3",
     "discord.js": "^14.14.1",
-    "ws": "^8.14.2",
-    "concurrently": "^8.2.0"
+    "ws": "^8.14.2"
   }
 }
