@@ -6,10 +6,11 @@ dotenv.config();
 export class OpenAIOperations {
     constructor(file_context, history_length, infoCanal) {
         this.messages = [{ role: "system", content: `${file_context}` }];
-        this.apiKey = process.env.OPENAI_API_KEY;this.apiKey1 = process.env.OPENAI_API_KEY_1;
-        this.apiKey2 = process.env.OPENAI_API_KEY_2;
+        //this.apiKey = process.env.OPENAI_API_KEY;this.apiKey1 = process.env.OPENAI_API_KEY_1;
+        //this.apiKey2 = process.env.OPENAI_API_KEY_2;
         this.currentApiKey = 1; // Indica qué clave está activa
-        this.apiKey = this.apiKey1; // Inicializa con la primera clave
+        //this.apiKey = this.apiKey1; // Inicializa con la primera clave
+        this.apiKey = process.env.SHAPES_API_KEY;
         this.model_name = process.env.MODEL_NAME;
         this.history_length = history_length;
 
@@ -70,7 +71,7 @@ async make_openrouter_call_with_context(userMessage, streamContext) {
                 this.check_history_length();
 
                 // Llamada a la API de OpenRouter usando fetch
-                const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+                const response = await fetch("https://api.shapes.inc/v1", {
                     method: "POST",
                     headers: {
                         "Authorization": `Bearer ${this.apiKey}`,
