@@ -5,9 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js",
-    "discord-bot": "node src/discord-bot.js"
-  },
+    "start": "concurrently \"node index.js\" \"node src/discord-bot.js\""
+  }
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Araxielfenix/twitch-rodentbot.git"
@@ -30,5 +29,8 @@
     "dotenv": "^16.0.3",
     "discord.js": "^14.14.1",
     "ws": "^8.14.2"
-  }
+  },
+  "devDependencies": {
+  "concurrently": "^8.2.0"
+}
 }
