@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "concurrently \"node index.js\" \"node src/discord-bot.js\""
-  }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Araxielfenix/twitch-rodentbot.git"
