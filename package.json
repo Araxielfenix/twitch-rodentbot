@@ -5,18 +5,19 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "discord-bot": "node src/discord-bot.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pedrojlazevedo/twitch-chatgpt.git"
+    "url": "git+https://github.com/Araxielfenix/twitch-rodentbot.git"
   },
-  "author": "Pedro Azevedo",
+  "author": "AraxielFenix",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/pedrojlazevedo/twitch-chatgpt/issues"
+    "url": "https://github.com/Araxielfenix/twitch-rodentbot/issues"
   },
-  "homepage": "https://github.com/pedrojlazevedo/twitch-chatgpt#readme",
+  "homepage": "https://github.com/Araxielfenix/twitch-rodentbot#readme",
   "dependencies": {
     "cron": "^3.1.1",
     "ejs": "^3.1.9",
