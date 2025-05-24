@@ -5,7 +5,6 @@ import expressWs from 'express-ws';
 import {job} from './keep_alive.js';
 import {OpenAIOperations} from './openai_operations.js';
 import {TwitchBot} from './twitch_bot.js';
-
 import { setInfoCanal } from './sharedData.js';
 
 // Start keep alive cron job
@@ -33,6 +32,8 @@ const SEND_USERNAME = process.env.SEND_USERNAME || 'true';
 const ENABLE_TTS = process.env.ENABLE_TTS || 'false';
 const ENABLE_CHANNEL_POINTS = process.env.ENABLE_CHANNEL_POINTS || 'false';
 const COOLDOWN_DURATION = parseInt(process.env.COOLDOWN_DURATION, 10) || 10; // Cooldown duration in seconds
+
+const AI_PROVIDER = process.env.AI_PROVIDER || 'OPENROUTER'; // <--- NUEVO
 
 let OPENAI_API_KEY = OPENAI_API_KEY_1;
 
@@ -71,7 +72,7 @@ const bot = new TwitchBot(TWITCH_USER, TWITCH_AUTH, channels, OPENAI_API_KEY, EN
 fileContext = fs.readFileSync('./file_context.txt', 'utf8');
 fileContext += '\nPor favor, responde de manera resumida el mensaje del espectador: ';
 
-const openaiOps = new OpenAIOperations(fileContext, OPENAI_API_KEY, MODEL_NAME, HISTORY_LENGTH);
+const openaiOps = new OpenAIOperations(fileContext, HISTORY_LENGTH);
 
 let currentStreamInfo = '';
 
@@ -79,8 +80,10 @@ async function updateStreamInfo() {
     try {
         currentStreamInfo = await getStreamInfo(`#${TWITCH_USER}`);
         console.log('Información del stream actualizada:', currentStreamInfo);
+        return currentStreamInfo;
     } catch (error) {
         console.error('Error al actualizar la información del stream:', error);
+        return '';
     }
 }
 
@@ -125,14 +128,19 @@ bot.onMessage(async (channel, user, message, self) => {
         lastResponseTime = currentTime; // Actualizar tiempo del último mensaje
 
         // Obtener información del stream
-        const response = await openaiOps.make_openrouter_call(`${currentStreamInfo}\n\n${message}`);
+        let response;
+        if (AI_PROVIDER === 'SHAPES') {
+            response = await openaiOps.make_shapes_call(`${currentStreamInfo}\n\n${message}`);
+        } else {
+            response = await openaiOps.make_openrouter_call(`${currentStreamInfo}\n\n${message}`);
+        }
         bot.say(channel, response);
     }
 
     // Verificar si el mensaje contiene un comando reconocido
     const command = commandNames.find(cmd => message.toLowerCase().includes(cmd.toLowerCase()));
     if (command) {
-        updateStreamInfo()
+        await updateStreamInfo();
         setInfoCanal(await getStreamInfo(channel));
         if (elapsedTime < COOLDOWN_DURATION) {
             bot.say(channel, `PoroSad Por favor, espera ${COOLDOWN_DURATION - elapsedTime.toFixed(1)} segundos antes de enviar otro mensaje. NotLikeThis`);
@@ -145,11 +153,14 @@ bot.onMessage(async (channel, user, message, self) => {
             text = `Message from user ${user.username}: ${text}`;
         }
 
-        // Obtener información del stream
-        const streamInfo = await updateStreamInfo();
-        
         // Pasar la información del canal como contexto
-        const response = await openaiOps.make_openrouter_call(`${streamInfo}\n\n${text}`);
+        let response;
+        if (AI_PROVIDER === 'SHAPES') {
+            response = await openaiOps.make_shapes_call(`${currentStreamInfo}\n\n${text}`);
+        } else {
+            response = await openaiOps.make_openrouter_call(`${currentStreamInfo}\n\n${text}`);
+        }
+
         if (response.length > maxLength) {
             const messages = response.match(new RegExp(`.{1,${maxLength}}`, 'g'));
             messages.forEach((msg, index) => {
@@ -175,8 +186,9 @@ bot.onMessage(async (channel, user, message, self) => {
 const messages = [{role: 'system', content: 'You are a helpful Twitch Chatbot.'}];
 console.log('GPT_MODE:', GPT_MODE);
 console.log('History length:', HISTORY_LENGTH);
-console.log('OpenAI API Key:', OPENAI_API_KEY);
+console.log('OpenAI API Key:', OPENAI_API_KEY_1);
 console.log('Model Name:', MODEL_NAME);
+console.log('AI_PROVIDER:', AI_PROVIDER);
 
 app.use(express.json({extended: true, limit: '1mb'}));
 app.use('/public', express.static('public'));
@@ -200,13 +212,18 @@ if (GPT_MODE === 'CHAT') {
     });
 }
 
+// Endpoint de API para prueba rápida
 app.get('/gpt/:text', async (req, res) => {
     const text = req.params.text;
 
     let answer = '';
     try {
         if (GPT_MODE === 'CHAT') {
-            answer = await openaiOps.make_openrouter_call(text);
+            if (AI_PROVIDER === 'SHAPES') {
+                answer = await openaiOps.make_shapes_call(text);
+            } else {
+                answer = await openaiOps.make_openrouter_call(text);
+            }
         } else if (GPT_MODE === 'PROMPT') {
             const prompt = `${fileContext}\n\nUser: ${text}\nAgent:`;
             answer = await openaiOps.make_openrouter_call_completion(prompt);
