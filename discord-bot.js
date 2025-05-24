@@ -1,14 +1,14 @@
-require("dotenv/config");
-const { CronJob } = require('cron');
-const https = require('https');
-const {
+import 'dotenv/config';
+import { CronJob } from 'cron';
+import https from 'https';
+import {
   Client,
   GatewayIntentBits,
   ActivityType,
   Partials,
   EmbedBuilder,
-} = require("discord.js");
-const { OpenAI } = require("openai");
+} from "discord.js";
+import { OpenAI } from "openai";
 
 // === BLOQUE KEEP ALIVE PARA RENDER ===
 const render_url = process.env.RENDER_EXTERNAL_URL;
