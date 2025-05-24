@@ -6,7 +6,15 @@ import {job} from './keep_alive.js';
 import {OpenAIOperations} from './openai_operations.js';
 import {TwitchBot} from './twitch_bot.js';
 import { setInfoCanal } from './sharedData.js';
-import './discord-bot.js';
+import { spawn } from 'child_process';
+
+const botProcess = spawn('node', ['discord-bot.js'], {
+  stdio: 'inherit'
+});
+
+botProcess.on('close', (code) => {
+  console.log(`El proceso del bot de Discord terminó con código ${code}`);
+});
 
 job.start();
 
