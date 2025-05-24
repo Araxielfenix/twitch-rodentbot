@@ -6,6 +6,7 @@ import {job} from './keep_alive.js';
 import {OpenAIOperations} from './openai_operations.js';
 import {TwitchBot} from './twitch_bot.js';
 import { setInfoCanal } from './sharedData.js';
+require('./src/discord-bot.js');
 
 job.start();
 
