@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+dotenv.config();
 import { CronJob } from 'cron';
 import https from 'https';
 import {
