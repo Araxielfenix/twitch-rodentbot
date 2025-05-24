@@ -11,10 +11,6 @@ import {
 } from "discord.js";
 import { OpenAI } from "openai";
 
-console.log("Discord bot logs:");
-console.log("TOKEN:" + process.env.TOKEN);
-console.log("SHAPES_API_KEY:" + process.env.SHAPES_API_KEY);
-
 const shapes_client = new OpenAI({
   apiKey: process.env.SHAPES_API_KEY,
   baseURL: "https://api.shapes.inc/v1",
