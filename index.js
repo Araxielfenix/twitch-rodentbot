@@ -31,6 +31,8 @@ const COOLDOWN_DURATION = parseInt(process.env.COOLDOWN_DURATION, 10) || 10;
 const TOKEN = process.env.TOKEN;
 const SHAPES_API_KEY = process.env.SHAPES_API_KEY;
 
+console.log("api: " + SHAPES_API_KEY + "/nToken: + TOKEN");
+
 const AI_PROVIDER = process.env.AI_PROVIDER || 'OPENROUTER'; // Cambia esto en el .env para alternar
 
 let OPENAI_API_KEY = OPENAI_API_KEY_1;
