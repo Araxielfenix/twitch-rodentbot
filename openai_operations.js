@@ -4,21 +4,20 @@ import { OpenAI } from "openai";
 dotenv.config();
 
 export class OpenAIOperations {
-    constructor(file_context, history_length, infoCanal) {
+    constructor(file_context, history_length) {
         this.fileContext = file_context;
         this.history_length = history_length;
         this.messages = [{ role: "system", content: `${file_context}` }];
 
-        // OpenAI/OpenRouter
+        // OpenAI/OpenRouter API keys
         this.apiKey1 = process.env.OPENAI_API_KEY_1;
         this.apiKey2 = process.env.OPENAI_API_KEY_2;
         this.currentApiKey = 1;
         this.apiKey = this.apiKey1;
-        this.model_name = process.env.MODEL_NAME;
+        this.model_name = process.env.MODEL_NAME; // Usarás esto para ambos proveedores
 
-        // Shapes
+        // Shapes client
         this.shapesApiKey = process.env.SHAPES_API_KEY;
-        this.shapesModel = process.env.SHAPES_MODEL;
         this.shapesClient = new OpenAI({
             apiKey: this.shapesApiKey,
             baseURL: "https://api.shapes.inc/v1"
@@ -30,11 +29,12 @@ export class OpenAIOperations {
         if (!this.shapesApiKey) {
             console.error('No se encontró la SHAPES_API_KEY. Por favor, configúrala.');
         }
-        if (!this.shapesModel) {
-            console.error('No se encontró la SHAPES_MODEL. Por favor, configúrala.');
+        if (!this.model_name) {
+            console.error('No se encontró la MODEL_NAME. Por favor, configúrala.');
         }
     }
 
+    // Alternancia de API key de OpenAI/OpenRouter
     toggleApiKey() {
         if (this.currentApiKey === 1 && this.apiKey2) {
             this.currentApiKey = 2;
@@ -53,12 +53,69 @@ export class OpenAIOperations {
         }
     }
 
-    // --- LLAMADA A OPENROUTER/OPENAI (igual que antes) ---
+    // Llamada a OpenRouter (o OpenAI compatible)
     async make_openrouter_call(text) {
-        // ... (igual que ya lo tienes)
+        const maxRetries = 3;
+        let attempts = 0;
+
+        while (attempts < maxRetries) {
+            try {
+                const infoCanal = getInfoCanal();
+                const formattedText = `${infoCanal}\n${text}`;
+                this.messages.push({ role: "user", content: formattedText });
+
+                this.check_history_length();
+
+                const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Authorization": `Bearer ${this.apiKey}`,
+                        "HTTP-Referer": process.env.YOUR_SITE_URL || "",
+                        "X-Title": process.env.YOUR_SITE_NAME || "",
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        model: this.model_name,
+                        messages: this.messages,
+                        temperature: 0.8,
+                        max_tokens: 65,
+                        frequency_penalty: 0.6,
+                        presence_penalty: 0.6,
+                    }),
+                });
+
+                if (!response.ok) {
+                    console.error(`HTTP Error: ${response.status} - ${response.statusText}`);
+                    if (response.status === 401) {
+                        console.log("API key inválida. Cambiando a una nueva API key...");
+                        this.toggleApiKey();
+                        continue;
+                    } else {
+                        throw new Error(`HTTP Error: ${response.status}`);
+                    }
+                }
+
+                const data = await response.json();
+
+                if (data.choices && data.choices[0].message) {
+                    const agent_response = data.choices[0].message.content;
+                    this.messages.push({ role: "assistant", content: agent_response });
+                    return agent_response;
+                } else {
+                    console.error("Unexpected response from OpenRouter:", data);
+                    throw new Error("No choices returned from OpenRouter");
+                }
+            } catch (error) {
+                console.error("Error during OpenRouter call:", error);
+                attempts += 1;
+                if (attempts >= maxRetries) {
+                    return "Tuve un problema para entender tu mensaje, por favor intenta más tarde.";
+                }
+            }
+        }
     }
 
-    // --- LLAMADA A SHAPES ---
+    // Llamada a Shapes (API compatible con OpenAI SDK)
     async make_shapes_call(userMessage) {
         const infoCanal = getInfoCanal();
         const formattedText = `${infoCanal}\n${userMessage}`;
@@ -67,7 +124,7 @@ export class OpenAIOperations {
 
         try {
             const response = await this.shapesClient.chat.completions.create({
-                model: this.shapesModel,
+                model: this.model_name, // Aquí usas el mismo MODEL_NAME
                 messages: this.messages,
             });
             const agent_response = response.choices?.[0]?.message?.content || "No response";
