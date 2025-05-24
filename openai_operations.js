@@ -6,11 +6,10 @@ dotenv.config();
 export class OpenAIOperations {
     constructor(file_context, history_length, infoCanal) {
         this.messages = [{ role: "system", content: `${file_context}` }];
-        //this.apiKey = process.env.OPENAI_API_KEY;this.apiKey1 = process.env.OPENAI_API_KEY_1;
-        //this.apiKey2 = process.env.OPENAI_API_KEY_2;
-        //this.currentApiKey = 1; // Indica qué clave está activa
-        //this.apiKey = this.apiKey1; // Inicializa con la primera clave
-        this.apiKey = process.env.SHAPES_API_KEY;
+        this.apiKey = process.env.OPENAI_API_KEY;this.apiKey1 = process.env.OPENAI_API_KEY_1;
+        this.apiKey2 = process.env.OPENAI_API_KEY_2;
+        this.currentApiKey = 1; // Indica qué clave está activa
+        this.apiKey = this.apiKey1; // Inicializa con la primera clave
         this.model_name = process.env.MODEL_NAME;
         this.history_length = history_length;
 
@@ -20,17 +19,17 @@ export class OpenAIOperations {
     }
 
     // Lógica para alternar entre las API keys
-    //toggleApiKey() {
-    //    if (this.currentApiKey === 1 && this.apiKey2) {
-    //        this.currentApiKey = 2;
-    //        this.apiKey = this.apiKey2;
-    //        console.log('Cambiando a la segunda API key');
-    //    } else if (this.currentApiKey === 2 && this.apiKey1) {
-    //        this.currentApiKey = 1;
-    //        this.apiKey = this.apiKey1;
-    //        console.log('Cambiando a la primera API key');
-    //    }
-    //}
+    toggleApiKey() {
+        if (this.currentApiKey === 1 && this.apiKey2) {
+            this.currentApiKey = 2;
+            this.apiKey = this.apiKey2;
+            console.log('Cambiando a la segunda API key');
+        } else if (this.currentApiKey === 2 && this.apiKey1) {
+            this.currentApiKey = 1;
+            this.apiKey = this.apiKey1;
+            console.log('Cambiando a la primera API key');
+        }
+    }
 
     // Verificar si el historial ha excedido el límite
     check_history_length() {
@@ -66,12 +65,12 @@ async make_openrouter_call_with_context(userMessage, streamContext) {
                 // Agregar infoCanal al mensaje del usuario a la historia
                 const formattedText = `${infoCanal}\n${text}`;
                 this.messages.push({ role: "user", content: formattedText });
-                
+
                 // Verificar si el historial ha excedido el límite
                 this.check_history_length();
 
                 // Llamada a la API de OpenRouter usando fetch
-                const response = await fetch("https://api.shapes.inc/v1", {
+                const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
                     method: "POST",
                     headers: {
                         "Authorization": `Bearer ${this.apiKey}`,
@@ -94,9 +93,9 @@ async make_openrouter_call_with_context(userMessage, streamContext) {
                     console.error(`HTTP Error: ${response.status} - ${response.statusText}`);
                     
                     // Manejo de error 401 para cambiar la API key
-                    if (response.status === 401 || response.status === 429) {
-                        console.log("API key inválida o se ha alcanzado el limite de tokens. Cambiando a una nueva API key...");
-                        //this.toggleApiKey(); // Cambiar a la siguiente clave
+                    if (response.status === 401) {
+                        console.log("API key inválida. Cambiando a una nueva API key...");
+                        this.toggleApiKey(); // Cambiar a la siguiente clave
                         continue; // Reintentar con la nueva clave
                     } else {
                         throw new Error(`HTTP Error: ${response.status}`);
