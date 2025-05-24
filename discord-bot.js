@@ -35,7 +35,7 @@ const shapes_client = new OpenAI({
   baseURL: "https://api.shapes.inc/v1",
 });
 
-const MODEL_ID = `${process.env.MODEL_NAME}`;
+const MODEL_ID = process.env.MODEL_NAME;
 
 const client = new Client({
   intents: [
