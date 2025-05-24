@@ -28,8 +28,8 @@ const SEND_USERNAME = process.env.SEND_USERNAME || 'true';
 const ENABLE_TTS = process.env.ENABLE_TTS || 'false';
 const ENABLE_CHANNEL_POINTS = process.env.ENABLE_CHANNEL_POINTS || 'false';
 const COOLDOWN_DURATION = parseInt(process.env.COOLDOWN_DURATION, 10) || 10;
-const TOKEN = process.env.TOKEN;
-const SHAPES_API_KEY = process.env.SHAPES_API_KEY;
+export const TOKEN = process.env.TOKEN;
+export const SHAPES_API_KEY = process.env.SHAPES_API_KEY;
 
 const AI_PROVIDER = process.env.AI_PROVIDER || 'OPENROUTER'; // Cambia esto en el .env para alternar
 
