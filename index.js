@@ -7,6 +7,7 @@ import {OpenAIOperations} from './openai_operations.js';
 import {TwitchBot} from './twitch_bot.js';
 import { setInfoCanal } from './sharedData.js';
 import { spawn } from 'child_process';
+import './discord-bot.js';
 
 const botProcess = spawn('node', ['discord-bot.js'], {
   stdio: 'inherit'
@@ -36,6 +37,7 @@ const SEND_USERNAME = process.env.SEND_USERNAME || 'true';
 const ENABLE_TTS = process.env.ENABLE_TTS || 'false';
 const ENABLE_CHANNEL_POINTS = process.env.ENABLE_CHANNEL_POINTS || 'false';
 const COOLDOWN_DURATION = parseInt(process.env.COOLDOWN_DURATION, 10) || 10;
+const TOKEN = process.env.TOKEN;
 
 const AI_PROVIDER = process.env.AI_PROVIDER || 'OPENROUTER'; // Cambia esto en el .env para alternar
 
