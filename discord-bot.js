@@ -1,4 +1,4 @@
-import 'dotenv/config';
+import dotenv from "dotenv";
 import { CronJob } from 'cron';
 import https from 'https';
 import {
