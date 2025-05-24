@@ -10,6 +10,7 @@ import {
   EmbedBuilder,
 } from "discord.js";
 import { OpenAI } from "openai";
+import { TOKEN, SHAPES_API_KEY } from "./index.js";
 
 console.log("TOKEN:", process.env.TOKEN ? "[DEFINIDO]" : "[NO DEFINIDO]");
 console.log("SHAPES_API_KEY:", process.env.SHAPES_API_KEY ? "[DEFINIDO]" : "[NO DEFINIDO]");
