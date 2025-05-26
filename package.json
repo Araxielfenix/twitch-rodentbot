@@ -5,8 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js",
-    "start": "concurrently \"node index.js\" \"node discord-bot.js\"",
+    "start": "concurrently \"node index.js\" \"node discord-bot.js\""
   },
   "repository": {
     "type": "git",
