@@ -224,10 +224,4 @@ client.on("messageCreate", async (message) => {
   }
 });
 
-console.log("TOKEN definido:", !!process.env.TOKEN, "Valor:", (process.env.TOKEN || "").slice(0, 10));
-console.log("SHAPES_API_KEY definido:", !!process.env.SHAPES_API_KEY, "Valor:", (process.env.SHAPES_API_KEY || "").slice(0, 10));
-console.log("MODEL_NAME:", process.env.MODEL_NAME);
-console.log("GENERAL_ID:", process.env.GENERAL_ID);
-console.log("CHANNEL_ID:", process.env.CHANNEL_ID);
-
 client.login(process.env.TOKEN);
