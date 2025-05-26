@@ -114,10 +114,8 @@ client.on("messageCreate", async (message) => {
     if (!debeResponder) {
       const keywords = [
         "Ayuda",
-        "Buenos dias",
-        "Buenos días",
-        "Buenas tardes",
-        "Buenas noches",
+        "Buenos",
+        "Buenas",
         "Feliz Cumpleaños",
         "F",
         "efe",
@@ -128,6 +126,12 @@ client.on("messageCreate", async (message) => {
         "wenas",
         "suicidio",
         "help",
+        "!imagine",
+        "sad",
+        "triste",
+        "Feliz navidad",
+        "Feliz año nuevo",
+        "feliz año",
       ];
       debeResponder = keywords.some((kw) =>
         message.content.toLowerCase().includes(kw.toLowerCase())
