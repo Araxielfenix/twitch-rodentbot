@@ -21,7 +21,6 @@ const MODEL_ID = process.env.MODEL_NAME;
 const botP =
   "RodentBot es un inteligente moderador mexicano que nació el 17 de enero del 2024. Forma parte de la comunidad RodentPlay. Tiene personalidad divertida, usa emojis, reconoce nombres y hace juegos, pero también sabe moderar y dar la bienvenida.";
 
-
 const client = new Client({
   intents: [
     GatewayIntentBits.Guilds,
@@ -114,11 +113,11 @@ client.on("messageCreate", async (message) => {
     if (!debeResponder) {
       const keywords = [
         "Ayuda",
-        "Buenos dias",
-        "Buenos días",
-        "Buenas tardes",
-        "Buenas noches",
+        "Buenos",
+        "Buenas",
         "Feliz Cumpleaños",
+        "Feliz año nuevo",
+        "Feliz navidad",
         "F",
         "efe",
         "Efisima",
@@ -128,6 +127,21 @@ client.on("messageCreate", async (message) => {
         "wenas",
         "suicidio",
         "help",
+        "sad",
+        "triste",
+        "llorar",
+        "bot",
+        "ban",
+        "botecito",
+        "boteesito",
+        "botsito",
+        "rodent",
+        "rodentbot",
+        "ratabot",
+        "volvi",
+        "Volví",
+        "regrese",
+        "regresé",
       ];
       debeResponder = keywords.some((kw) =>
         message.content.toLowerCase().includes(kw.toLowerCase())
