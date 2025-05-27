@@ -66,7 +66,11 @@ client.on("ready", () => {
 
     canal.send({
       content: response.choices[0].message.content,
-      allowedMentions: { parse: [] },
+      allowedMentions: { 
+        roles: [],
+        users: [],
+        everyone: true
+      },
     });
   }, 21600000); // cada 6 horas
 });
@@ -89,7 +93,11 @@ client.on("guildMemberAdd", async (member) => {
 
     canal.send({
       content: response.choices[0].message.content,
-      allowedMentions: { parse: [] },
+      allowedMentions: { 
+        roles: [],
+        users: [],
+        everyone: true
+      },
     });
   } catch (error) {
     console.error("Error en bienvenida:", error);
@@ -217,7 +225,11 @@ client.on("messageCreate", async (message) => {
     if (!message.replied) {
       await message.channel.send({
         content: response.choices[0].message.content,
-        allowedMentions: { parse: [] },
+        allowedMentions: { 
+          roles: [],
+          users: [],
+          everyone: true
+        },
 });
     }
   } catch (error) {
