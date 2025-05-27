@@ -65,12 +65,7 @@ client.on("ready", () => {
     });
 
     canal.send({
-      content: response.choices[0].message.content,
-      allowedMentions: { 
-        everyone: true,
-        users: true,
-        roles: true
-      },
+      content: response.choices[0].message.content
     });
   }, 21600000); // cada 6 horas
 });
@@ -92,12 +87,7 @@ client.on("guildMemberAdd", async (member) => {
     });
 
     canal.send({
-      content: response.choices[0].message.content,
-      allowedMentions: { 
-        everyone: true,
-        users: true,
-        roles: true
-      },
+      content: response.choices[0].message.content
     });
   } catch (error) {
     console.error("Error en bienvenida:", error);
@@ -224,12 +214,7 @@ client.on("messageCreate", async (message) => {
     // Responde solo una vez
     if (!message.replied) {
       await message.channel.send({
-        content: response.choices[0].message.content,
-        allowedMentions: { 
-        everyone: true,
-        users: true,
-        roles: true
-        },
+        content: response.choices[0].message.content
 });
     }
   } catch (error) {
