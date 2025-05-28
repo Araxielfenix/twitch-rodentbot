@@ -110,27 +110,7 @@ client.on("messageCreate", async (message) => {
     // Solo responde si mencionan al bot o usan palabra clave
     let debeResponder = message.mentions.has(client.user);
     if (!debeResponder) {
-      const keywords = [
-        "Ayuda",
-        "Buenos",
-        "Buenas",
-        "Feliz Cumpleaños",
-        "F",
-        "efe",
-        "Efisima",
-        "Efesota",
-        "nunchu2NunchuF",
-        "buenas",
-        "wenas",
-        "suicidio",
-        "help",
-        "!imagine",
-        "sad",
-        "triste",
-        "Feliz navidad",
-        "Feliz año nuevo",
-        "feliz año",
-      ];
+      const keywords = process.env.COMMAND_NAME;
       debeResponder = keywords.some((kw) =>
         message.content.toLowerCase().includes(kw.toLowerCase())
       );
