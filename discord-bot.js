@@ -102,8 +102,10 @@ client.on("messageCreate", async (message) => {
     console.log(`[${message.id}] Mensaje recibido: "${message.content}" por ${message.author.username} (${message.author.id}) en canal ${message.channel.id}`);
     const ignoredChannels = process.env.CHANNEL_ID.split(",").map(id => id.trim());
 
-    // Ignora mensajes de bots y comandos
-    if (message.author.bot || message.content.startsWith("/") || message.author.id === client.user.id) return;
+    if ((message.member && message.member.roles.cache.some(role => role.name.toLowerCase() === "BOT")) ||
+        message.content.startsWith("/") ||
+        message.author.id === client.user.id
+        ) return;
     // Ignora canales prohibidos
     if (ignoredChannels.includes(message.channel.id)) return;
 
