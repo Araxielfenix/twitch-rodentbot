@@ -53,7 +53,7 @@ client.on("ready", () => {
 
     await canal.sendTyping();
     const prompt =
-      "Eres un moderador del Discord RodentPlay. Escribe un mensaje divertido y corto de hasta 4 renglones para invitar a todos a hablar de sus videojuegos favoritos, peliculas, series, anime, logros o hasta metas personales, puedes contar chistes, adivinanzas y diversos temas para hacer la platica en el servidor.";
+      "Eres un moderador del Discord RodentPlay. Escribe un mensaje divertido y corto de hasta 4 renglones para invitar a todos a hablar, puedes preguntar temas sobre videojuegos favoritos, peliculas, series, anime, logros o hasta metas personales, puedes contar chistes, adivinanzas y diversos temas para hacer la platica en el servidor, pregunta una cosa unicamente para no desviar el tema.";
 
     const response = await shapes_client.chat.completions.create({
       model: MODEL_ID,
