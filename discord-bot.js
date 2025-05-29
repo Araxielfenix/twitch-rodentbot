@@ -102,6 +102,8 @@ client.on("messageCreate", async (message) => {
     console.log(`[${message.id}] Mensaje recibido: "${message.content}" por ${message.author.username} (${message.author.id}) en canal ${message.channel.id}`);
     const ignoredChannels = process.env.CHANNEL_ID.split(",").map(id => id.trim());
 
+    if (message.author.id === '159985870458322944') return;
+    
     if ((message.member && (
       (message.member.roles.cache.has('771230836678590484')) ||
       (!message.author.bot && message.member.roles.cache.some(role => role.name.toLowerCase() === "bot"))
