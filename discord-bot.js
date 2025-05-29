@@ -98,8 +98,6 @@ const userConversations = new Map();
 
 client.on("messageCreate", async (message) => {
   try {
-    // LOG para detectar ejecuciones dobles
-    console.log(`[${message.id}] Mensaje recibido: "${message.content}" por ${message.author.username} (${message.author.id}) en canal ${message.channel.id}`);
     const ignoredChannels = process.env.CHANNEL_ID.split(",").map(id => id.trim());
 
     if (message.author.id === '159985870458322944') return;
@@ -125,6 +123,9 @@ client.on("messageCreate", async (message) => {
     if (!debeResponder) return;
 
     await message.channel.sendTyping();
+
+    // LOG para detectar ejecuciones dobles
+    console.log(`[${message.id}] Mensaje recibido: "${message.content}" por ${message.author.username} (${message.author.id}) en canal ${message.channel.id}`);
 
     if (message.content.toLowerCase().includes("!imagine")) {
       message.react("🎨");
