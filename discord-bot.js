@@ -64,6 +64,7 @@ client.on("ready", () => {
       max_tokens: 200,
       headers: {
         "X-Channel-Id": `Canal de discord: ${message.channel.id}`
+      }
     });
 
     canal.send({
