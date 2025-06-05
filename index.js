@@ -6,7 +6,7 @@ import {job} from './keep_alive.js';
 import {OpenAIOperations} from './openai_operations.js';
 import {TwitchBot} from './twitch_bot.js';
 import { setInfoCanal } from './sharedData.js';
-//import './discord-bot.js';
+import { setUserId } from './sharedData.js';
 
 job.start();
 
@@ -90,6 +90,8 @@ bot.connect(
 
 bot.onMessage(async (channel, user, message, self) => {
     if (self) return;
+
+    setUserId(user.username);
 
     const currentTime = Date.now();
     const elapsedTime = (currentTime - lastResponseTime) / 1000;
