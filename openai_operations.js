@@ -124,8 +124,12 @@ export class OpenAIOperations {
 
         try {
             const response = await this.shapesClient.chat.completions.create({
-                model: this.model_name, // Aquí usas el mismo MODEL_NAME
+                model: this.model_name,
                 messages: this.messages,
+                headers: {
+                    "X-User-Id": userId,
+                    "X-Channel-Id": `Canal de Twitch de: ${channelId}`
+    }
             });
             const agent_response = response.choices?.[0]?.message?.content || "No response";
             this.messages.push({ role: "assistant", content: agent_response });
