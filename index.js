@@ -92,6 +92,8 @@ bot.onMessage(async (channel, user, message, self) => {
     if (self) return;
 
     setUserId(user.username);
+    setInfoCanal(await getStreamInfo(channel));
+    console.log("Probando para la variable canal: " + channel);
 
     const currentTime = Date.now();
     const elapsedTime = (currentTime - lastResponseTime) / 1000;
@@ -116,7 +118,6 @@ bot.onMessage(async (channel, user, message, self) => {
     const command = commandNames.find(cmd => message.toLowerCase().includes(cmd.toLowerCase()));
     if (command) {
         await updateStreamInfo();
-        setInfoCanal(await getStreamInfo(channel));
         if (elapsedTime < COOLDOWN_DURATION) {
             bot.say(channel, `PoroSad Por favor, espera ${COOLDOWN_DURATION - elapsedTime.toFixed(1)} segundos antes de enviar otro mensaje. NotLikeThis`);
             return;
