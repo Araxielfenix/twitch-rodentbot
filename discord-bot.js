@@ -39,6 +39,7 @@ const client = new Client({
 });
 
 let timer = 0;
+let userName = "";
 
 client.on("ready", () => {
   console.log("🫡A la orden pal desorden.");
@@ -205,7 +206,7 @@ client.on("messageCreate", async (message) => {
       ],
       max_tokens: 500,
       headers: {
-        "X-User-Id": member.user.username,
+        "X-User-Id": message.author.username,
         "X-Channel-Id": `Canal de discord: ${message.channel.id}`
   }
     });
