@@ -90,6 +90,7 @@ client.on("guildMemberAdd", async (member) => {
       headers: {
         "X-User-Id": member.user.username,
         "X-Channel-Id": `Canal de discord: ${message.channel.id}`
+      }
     });
 
     canal.send({
