@@ -13,7 +13,6 @@ export function setApiKey(newKey) {
     apiKey = newKey;
 }
 
-// sharedData.js
 let userId = null;
 
 export function setUserId(id) {
@@ -21,4 +20,14 @@ export function setUserId(id) {
 }
 export function getUserId() {
   return userId;
+}
+
+let channelId = null;
+
+export function setChannelId(id) {
+  channelId = id;
+}
+
+export function getChannelId() {
+  return channelId;
 }
