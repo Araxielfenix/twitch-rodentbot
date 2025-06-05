@@ -7,6 +7,7 @@ import {OpenAIOperations} from './openai_operations.js';
 import {TwitchBot} from './twitch_bot.js';
 import { setInfoCanal } from './sharedData.js';
 import { setUserId } from './sharedData.js';
+import { setChannelId, getChannelId } from './sharedData.js';
 
 job.start();
 
@@ -93,7 +94,7 @@ bot.onMessage(async (channel, user, message, self) => {
 
     setUserId(user.username);
     setInfoCanal(await getStreamInfo(channel));
-    console.log("Probando para la variable canal: " + channel);
+    setChannelId(channel);
 
     const currentTime = Date.now();
     const elapsedTime = (currentTime - lastResponseTime) / 1000;
