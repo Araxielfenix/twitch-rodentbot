@@ -1,4 +1,5 @@
 import { getInfoCanal } from './sharedData.js';
+import { getUserId } from './sharedData.js';
 import dotenv from "dotenv";
 import { OpenAI } from "openai";
 dotenv.config();
@@ -117,6 +118,7 @@ export class OpenAIOperations {
 
     // Llamada a Shapes (API compatible con OpenAI SDK)
     async make_shapes_call(userMessage) {
+        const userId = getUserId();
         const infoCanal = getInfoCanal();
         const formattedText = `${infoCanal}\n${userMessage}`;
         this.messages.push({ role: "user", content: formattedText });
