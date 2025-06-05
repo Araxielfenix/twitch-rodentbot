@@ -62,6 +62,8 @@ client.on("ready", () => {
         { role: "user", content: prompt },
       ],
       max_tokens: 200,
+      headers: {
+        "X-Channel-Id": `Canal de discord: ${message.channel.id}`
     });
 
     canal.send({
@@ -84,6 +86,9 @@ client.on("guildMemberAdd", async (member) => {
         { role: "user", content: prompt },
       ],
       max_tokens: 200,
+      headers: {
+        "X-User-Id": member.user.username,
+        "X-Channel-Id": `Canal de discord: ${message.channel.id}`
     });
 
     canal.send({
@@ -197,6 +202,10 @@ client.on("messageCreate", async (message) => {
         { role: "user", content },
       ],
       max_tokens: 500,
+      headers: {
+        "X-User-Id": member.user.username,
+        "X-Channel-Id": `Canal de discord: ${message.channel.id}`
+  }
     });
     
     // Responde solo una vez
