@@ -163,14 +163,6 @@ console.log('OpenAI API Key:', OPENAI_API_KEY_1);
 console.log('Model Name:', MODEL_NAME);
 console.log('AI_PROVIDER:', AI_PROVIDER);
 
-app.use(express.json({extended: true, limit: '1mb'}));
-app.use('/public', express.static('public'));
-
-app.all('/', (req, res) => {
-    console.log('Received a request!');
-    res.render('pages/index');
-});
-
 if (GPT_MODE === 'CHAT') {
     fs.readFile('./file_context.txt', 'utf8', (err, data) => {
         if (err) throw err;
