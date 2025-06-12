@@ -68,12 +68,13 @@ client.on("ready", () => {
       }
     });
 
+    console.log("==================================");
     console.log(response.choices[0].message.content);
     
     canal.send({
       content: response.choices[0].message.content
     });
-  }, 21600000); // cada 6 horas
+  }, 43200000); // cada 12 horas
 });
 
 client.on("guildMemberAdd", async (member) => {
@@ -95,8 +96,12 @@ client.on("guildMemberAdd", async (member) => {
         "X-Channel-Id": `Canal de discord: ${message.channel.id}`
       }
     });
-
+    
+    console.log("==================================");
+    console.log(member.user.username + " acaba de unirse al Discord");
     console.log(response.choices[0].message.content);
+    console.log("==================================");
+    
     canal.send({
       content: response.choices[0].message.content
     });
@@ -135,9 +140,11 @@ client.on("messageCreate", async (message) => {
 
     await message.channel.sendTyping();
 
+    console.log("==================================");
     // LOG para detectar ejecuciones dobles
-    console.log(`[${message.id}] Mensaje recibido: "${message.content}" por ${message.author.username} (${message.author.id}) en canal ${message.channel.id}`);
-
+    console.log(`Mensaje recibido: "${message.content}" por ${message.author.username} en canal ${message.channel.name}`);
+    console.log("==================================");
+    
     if (message.content.toLowerCase().includes("!imagine")) {
       message.react("🎨");
     }
@@ -216,6 +223,8 @@ client.on("messageCreate", async (message) => {
 
 
     console.log(response.choices[0].message.content);
+    console.log("==================================");
+    console.log(`Mensaje de ${message.author.username}: ${message.content}`);
     // Responde solo una vez
     if (!message.replied) {
       await message.channel.send({
