@@ -93,7 +93,7 @@ client.on("guildMemberAdd", async (member) => {
       max_tokens: 200,
       headers: {
         "X-User-Id": member.user.username,
-        "X-Channel-Id": `Canal de discord: ${message.channel.id}`
+        "X-Channel-Id": `Canal de discord: ${message.channel.name}`
       }
     });
     
@@ -216,7 +216,7 @@ client.on("messageCreate", async (message) => {
       max_tokens: 500,
       headers: {
         "X-User-Id": message.author.username,
-        "X-Channel-Id": `Canal de discord: ${message.channel.id}`
+        "X-Channel-Id": `Canal de discord: ${message.channel.name}`
   }
     });
 
