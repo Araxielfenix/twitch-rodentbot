@@ -143,7 +143,6 @@ client.on("messageCreate", async (message) => {
     console.log("==================================");
     // LOG para detectar ejecuciones dobles
     console.log(`Mensaje recibido: "${message.content}" por ${message.author.username} en canal ${message.channel.name}`);
-    console.log("==================================");
     
     if (message.content.toLowerCase().includes("!imagine")) {
       message.react("🎨");
@@ -224,7 +223,6 @@ client.on("messageCreate", async (message) => {
 
     console.log(response.choices[0].message.content);
     console.log("==================================");
-    console.log(`Mensaje de ${message.author.username}: ${message.content}`);
     // Responde solo una vez
     if (!message.replied) {
       await message.channel.send({
