@@ -50,7 +50,7 @@ let canal = "";
 
 console.log("==================================\n");
 console.log('Channels: ', channels);
-console.log("\n==================================");
+console.log("==================================");
 const bot = new TwitchBot(TWITCH_USER, TWITCH_AUTH, channels, OPENAI_API_KEY, ENABLE_TTS);
 
 const openaiOps = new OpenAIOperations(fileContext, HISTORY_LENGTH);
@@ -58,27 +58,27 @@ const openaiOps = new OpenAIOperations(fileContext, HISTORY_LENGTH);
 let currentStreamInfo = '';
 
 async function updateStreamInfo(channel) {
-    console.log("==================================\n");
+    console.log("==================================");
     try {
         const info = await getStreamInfo(channel);
         console.log('Información del stream actualizada:', info);
-        console.log("\n==================================");
+        console.log("==================================");
         return info;
     } catch (error) {
         console.error('Error al actualizar la información del stream:', error);
-        console.log("\n==================================");
+        console.log("==================================");
         return '';
     }
 }
 
 bot.onConnected((addr, port) => {
-    console.log("==================================\n");
+    console.log("==================================");
     console.log(`* Conectandome a ${addr}:${port}`);
     channels.forEach(channel => {
         console.log(`* Entrando al canal de ${channel}`);
         console.log(`* Correctamente presente con ${channel}`);
     });
-    console.log("\n==================================");
+    console.log("==================================");
 });
 
 bot.onDisconnected(reason => {
@@ -89,11 +89,11 @@ bot.onDisconnected(reason => {
 
 bot.connect(
     () => {
-        console.log("==================================\n");
+        console.log("==================================");
         console.log('Bot connected!');
         updateStreamInfo(channel);
         setInterval(updateStreamInfo(channel), 60000);
-        console.log("\n==================================");
+        console.log("==================================");
     },
     error => {
         console.error('Bot couldn\'t connect!', error);
@@ -114,7 +114,7 @@ bot.onMessage(async (channel, user, message, self) => {
         console.log(`Highlighted message: ${message}`);
         if (elapsedTime < COOLDOWN_DURATION) {
             bot.say(channel, `PoroSad Por favor, espera ${COOLDOWN_DURATION - elapsedTime.toFixed(1)} segundos antes de enviar otro mensaje. NotLikeThis`);
-            console.log("\n==================================");
+            console.log("==================================");
             return;
         }
         lastResponseTime = currentTime;
@@ -127,19 +127,18 @@ bot.onMessage(async (channel, user, message, self) => {
         }
         console.log("Respuesta para Twitch:", response);
         bot.say(channel, response);
-        console.log("\n==================================");
+        console.log("==================================");
     }
 
     const command = commandNames.find(cmd => message.toLowerCase().includes(cmd.toLowerCase()));
-    console.log("==================================\n");
+    console.log("==================================");
     console.log("Mensaje recibido en el canal de " + channel + " " + message);
-    console.log("\n----------------------------------\n");
     if (command) {
         await updateStreamInfo(channel);
         if (elapsedTime < COOLDOWN_DURATION) {
             console.log("Mensaje de cooldown en el canal de " + channel);
             bot.say(channel, `PoroSad Por favor, espera ${COOLDOWN_DURATION - elapsedTime.toFixed(1)} segundos antes de enviar otro mensaje. NotLikeThis`);
-            console.log("\n==================================");
+            console.log("==================================");
             return;
         }
         lastResponseTime = currentTime;
@@ -162,13 +161,13 @@ bot.onMessage(async (channel, user, message, self) => {
                 setTimeout(() => {
                     console.log("Respuesta para Twitch:", response);
                     bot.say(channel, msg);
-                    console.log("\n==================================");
+                    console.log("==================================");
                 }, 1000 * index);
             });
         } else {
             console.log("Respuesta para Twitch:", response);
             bot.say(channel, response);
-            console.log("\n==================================");
+            console.log("==================================");
         }
 
         if (ENABLE_TTS === 'true') {
@@ -183,13 +182,13 @@ bot.onMessage(async (channel, user, message, self) => {
 });
 
 const messages = [{role: 'system', content: 'You are a helpful Twitch Chatbot.'}];
-console.log("==================================\n");
+console.log("==================================");
 console.log('GPT_MODE:', GPT_MODE);
 console.log('History length:', HISTORY_LENGTH);
 console.log('OpenAI API Key:', OPENAI_API_KEY_1);
 console.log('Model Name:', MODEL_NAME);
 console.log('AI_PROVIDER:', AI_PROVIDER);
-console.log("\n==================================");
+console.log("==================================");
 
 app.use(express.json({extended: true, limit: '1mb'}));
 app.use('/public', express.static('public'));
