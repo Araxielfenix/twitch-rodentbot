@@ -194,13 +194,19 @@ client.on("messageCreate", async (message) => {
     if (!isDM && IGNORED_CHANNEL_IDS.includes(message.channel.id)) return;
 
     // --- Lógica de Respuesta del Bot ---
-
-    // Determinar si el bot debe responder (mención o palabra clave)
-    let debeResponder = message.mentions.has(client.user);
-    if (!debeResponder && COMMAND_KEYWORDS.length > 0) {
-      const messageContentLowerCase = message.content.toLowerCase();
-      debeResponder = COMMAND_KEYWORDS.some((kw) => messageContentLowerCase.includes(kw));
+    let debeResponder = false;
+    if (isDM) {
+      // Para DMs, siempre responder (a menos que otras condiciones de ignorar apliquen, como ser el propio bot)
+      debeResponder = true;
+    } else {
+      // Para mensajes en servidor, determinar si el bot debe responder (mención o palabra clave)
+      debeResponder = message.mentions.has(client.user);
+      if (!debeResponder && COMMAND_KEYWORDS.length > 0) {
+        const messageContentLowerCase = message.content.toLowerCase();
+        debeResponder = COMMAND_KEYWORDS.some((kw) => messageContentLowerCase.includes(kw));
+      }
     }
+
     if (!debeResponder) return;
 
     await message.channel.sendTyping();
