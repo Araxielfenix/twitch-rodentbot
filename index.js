@@ -94,8 +94,6 @@ bot.onMessage(async (channel, user, message, self) => {
 
     setUserId(user.username);
     setInfoCanal(await getStreamInfo(channel));
-    const streamInfo = await getStreamInfo(channel);
-    console.log(streamInfo);
     setChannelId(channel);
 
     const currentTime = Date.now();
