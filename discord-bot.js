@@ -220,7 +220,7 @@ client.on("messageCreate", async (message) => {
   }
     });
 
-
+    console.log("----------------------------------");
     console.log(response.choices[0].message.content);
     console.log("==================================");
     // Responde solo una vez
