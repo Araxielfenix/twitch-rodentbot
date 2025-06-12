@@ -9,13 +9,6 @@ import { setInfoCanal } from './sharedData.js';
 import { setUserId } from './sharedData.js';
 import { setChannelId, getChannelId } from './sharedData.js';
 
-job.start();
-
-const app = express();
-const expressWsInstance = expressWs(app);
-
-app.set('view engine', 'ejs');
-
 const GPT_MODE = process.env.GPT_MODE || 'CHAT';
 const HISTORY_LENGTH = process.env.HISTORY_LENGTH || 20;
 const OPENAI_API_KEY_1 = process.env.OPENAI_API_KEY_1 || '';
