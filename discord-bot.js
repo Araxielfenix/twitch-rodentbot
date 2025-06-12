@@ -7,6 +7,7 @@ import {
   GatewayIntentBits,
   ActivityType,
   Partials,
+  ChannelType, // Añadido para identificar DMs
   // EmbedBuilder, // No se usa
 } from "discord.js";
 import { OpenAI } from "openai";
@@ -172,6 +173,8 @@ client.on("guildMemberAdd", async (member) => {
 
 client.on("messageCreate", async (message) => {
   try {
+    const isDM = message.channel.type === ChannelType.DM;
+
     // --- Condiciones de Ignorar Mensaje (Guard Clauses) ---
 
     // 1. Ignorar a MEE6
@@ -181,14 +184,14 @@ client.on("messageCreate", async (message) => {
     if (message.author.id === client.user.id || message.content.startsWith("/")) return;
 
     // 3. Ignorar usuarios con rol específico o rol "bot" (si no son bots reales)
-    if (message.member) { // message.member puede ser null (ej. DMs)
+    if (!isDM && message.member) { // message.member es null en DMs, esta lógica solo aplica a servidores
       if (message.member.roles.cache.has(IGNORED_ROLE_ID)) return;
       // Si el usuario NO es un bot, pero TIENE un rol llamado "bot" (case-insensitive)
       if (!message.author.bot && message.member.roles.cache.some(role => role.name.toLowerCase() === "bot")) return;
     }
 
-    // 4. Ignorar canales específicos
-    if (IGNORED_CHANNEL_IDS.includes(message.channel.id)) return;
+    // 4. Ignorar canales específicos (solo si no es un DM)
+    if (!isDM && IGNORED_CHANNEL_IDS.includes(message.channel.id)) return;
 
     // --- Lógica de Respuesta del Bot ---
 
@@ -203,7 +206,9 @@ client.on("messageCreate", async (message) => {
     await message.channel.sendTyping();
 
     logSeparator();
-    console.log(`Mensaje recibido: "${message.content}" por ${message.author.username} en canal ${message.channel.name} (ID: ${message.channel.id})`);
+    console.log(
+      `Mensaje recibido: "${message.content}" por ${message.author.username} en ${isDM ? 'DM' : `canal ${message.channel.name}`} (ID: ${message.channel.id})`
+    );
 
     if (message.content.toLowerCase().includes("!imagine")) {
       message.react("🎨");
