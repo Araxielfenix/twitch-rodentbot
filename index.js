@@ -9,6 +9,13 @@ import { setInfoCanal } from './sharedData.js';
 import { setUserId } from './sharedData.js';
 import { setChannelId, getChannelId } from './sharedData.js';
 
+job.start();
+
+const app = express();
+const expressWsInstance = expressWs(app);
+
+app.set('view engine', 'ejs');
+
 const GPT_MODE = process.env.GPT_MODE || 'CHAT';
 const HISTORY_LENGTH = process.env.HISTORY_LENGTH || 20;
 const OPENAI_API_KEY_1 = process.env.OPENAI_API_KEY_1 || '';
@@ -162,6 +169,14 @@ console.log('History length:', HISTORY_LENGTH);
 console.log('OpenAI API Key:', OPENAI_API_KEY_1);
 console.log('Model Name:', MODEL_NAME);
 console.log('AI_PROVIDER:', AI_PROVIDER);
+
+app.use(express.json({extended: true, limit: '1mb'}));
+app.use('/public', express.static('public'));
+
+app.all('/', (req, res) => {
+    console.log('Received a request!');
+    res.render('pages/index');
+});
 
 if (GPT_MODE === 'CHAT') {
     fs.readFile('./file_context.txt', 'utf8', (err, data) => {
