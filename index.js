@@ -113,6 +113,7 @@ bot.onMessage(async (channel, user, message, self) => {
         } else {
             response = await openaiOps.make_openrouter_call(`${currentStreamInfo}\n\n${message}`);
         }
+        console.log("Respuesta para Twitch:", response);
         bot.say(channel, response);
     }
 
@@ -120,6 +121,7 @@ bot.onMessage(async (channel, user, message, self) => {
     if (command) {
         await updateStreamInfo();
         if (elapsedTime < COOLDOWN_DURATION) {
+            console.log("Mensaje de cooldown en el canal de " + channel);
             bot.say(channel, `PoroSad Por favor, espera ${COOLDOWN_DURATION - elapsedTime.toFixed(1)} segundos antes de enviar otro mensaje. NotLikeThis`);
             return;
         }
@@ -141,10 +143,12 @@ bot.onMessage(async (channel, user, message, self) => {
             const messages = response.match(new RegExp(`.{1,${maxLength}}`, 'g'));
             messages.forEach((msg, index) => {
                 setTimeout(() => {
+                    console.log("Respuesta para Twitch (mensaje destacado):", response);
                     bot.say(channel, msg);
                 }, 1000 * index);
             });
         } else {
+            console.log("Respuesta para Twitch (mensaje destacado):", response);
             bot.say(channel, response);
         }
 
