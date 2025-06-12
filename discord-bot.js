@@ -67,7 +67,7 @@ const client = new Client({
     GatewayIntentBits.DirectMessageTyping,
     GatewayIntentBits.GuildScheduledEvents,
   ],
-  partials: [Partials.GuildMember],
+  partials: [Partials.GuildMember, Partials.Channel, Partials.Message], // Añadido Partials.Message
 });
 
 // --- Helper Functions ---
@@ -297,8 +297,8 @@ client.on("messageCreate", async (message) => {
     } else {
       console.log("No hubo respuesta de la API de Shapes para el mensaje del usuario.");
       if (!message.replied) {
-        // Opcional: enviar un mensaje si la API no responde pero no hay error
-        // message.reply("No pude generar una respuesta en este momento.");
+            // Opcional: enviar un mensaje si la API no responde pero no hay error. DESCOMENTAR PARA PRUEBAS.
+            message.reply("No pude generar una respuesta de la API en este momento.");
       }
     }
   } catch (error) {
