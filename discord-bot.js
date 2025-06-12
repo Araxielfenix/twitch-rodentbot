@@ -220,6 +220,10 @@ client.on("messageCreate", async (message) => {
       message.react("🎨");
     }
 
+    if (message.content.toLowerCase().includes("!web")) {
+      message.react("🛜");
+    }
+
     const userId = message.author.id;
     const history = userConversations.get(userId) || [];
 
