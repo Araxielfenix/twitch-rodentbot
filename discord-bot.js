@@ -68,6 +68,8 @@ client.on("ready", () => {
       }
     });
 
+    console.log(response.choices[0].message.content);
+    
     canal.send({
       content: response.choices[0].message.content
     });
@@ -94,6 +96,7 @@ client.on("guildMemberAdd", async (member) => {
       }
     });
 
+    console.log(response.choices[0].message.content);
     canal.send({
       content: response.choices[0].message.content
     });
@@ -210,7 +213,9 @@ client.on("messageCreate", async (message) => {
         "X-Channel-Id": `Canal de discord: ${message.channel.id}`
   }
     });
-    
+
+
+    console.log(response.choices[0].message.content);
     // Responde solo una vez
     if (!message.replied) {
       await message.channel.send({
