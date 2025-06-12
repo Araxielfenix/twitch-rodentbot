@@ -111,7 +111,6 @@ bot.onMessage(async (channel, user, message, self) => {
     const elapsedTime = (currentTime - lastResponseTime) / 1000;
 
     if (ENABLE_CHANNEL_POINTS === 'true' && user['msg-id'] === 'highlighted-message') {
-        console.log("==================================\n");
         console.log(`Highlighted message: ${message}`);
         if (elapsedTime < COOLDOWN_DURATION) {
             bot.say(channel, `PoroSad Por favor, espera ${COOLDOWN_DURATION - elapsedTime.toFixed(1)} segundos antes de enviar otro mensaje. NotLikeThis`);
@@ -132,6 +131,9 @@ bot.onMessage(async (channel, user, message, self) => {
     }
 
     const command = commandNames.find(cmd => message.toLowerCase().includes(cmd.toLowerCase()));
+    console.log("==================================\n");
+    console.log("Mensaje recibido en el canal de " + channel + " " + message);
+    console.log("\n----------------------------------\n");
     if (command) {
         await updateStreamInfo(channel);
         if (elapsedTime < COOLDOWN_DURATION) {
@@ -158,13 +160,13 @@ bot.onMessage(async (channel, user, message, self) => {
             const messages = response.match(new RegExp(`.{1,${maxLength}}`, 'g'));
             messages.forEach((msg, index) => {
                 setTimeout(() => {
-                    console.log("Respuesta para Twitch (mensaje destacado):", response);
+                    console.log("Respuesta para Twitch:", response);
                     bot.say(channel, msg);
                     console.log("\n==================================");
                 }, 1000 * index);
             });
         } else {
-            console.log("Respuesta para Twitch (mensaje destacado):", response);
+            console.log("Respuesta para Twitch:", response);
             bot.say(channel, response);
             console.log("\n==================================");
         }
