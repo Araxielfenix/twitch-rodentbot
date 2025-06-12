@@ -55,11 +55,11 @@ const openaiOps = new OpenAIOperations(fileContext, HISTORY_LENGTH);
 
 let currentStreamInfo = '';
 
-async function updateStreamInfo() {
+async function updateStreamInfo(channel) {
     try {
-        currentStreamInfo = await getStreamInfo(`#${TWITCH_USER}`);
-        console.log('Información del stream actualizada:', currentStreamInfo);
-        return currentStreamInfo;
+        const info = await getStreamInfo(channel);
+        console.log('Información del stream actualizada:', info);
+        return info;
     } catch (error) {
         console.error('Error al actualizar la información del stream:', error);
         return '';
@@ -81,8 +81,8 @@ bot.onDisconnected(reason => {
 bot.connect(
     () => {
         console.log('Bot connected!');
-        updateStreamInfo();
-        setInterval(updateStreamInfo, 60000);
+        updateStreamInfo(channel);
+        setInterval(updateStreamInfo(channel), 60000);
     },
     error => {
         console.error('Bot couldn\'t connect!', error);
@@ -94,6 +94,8 @@ bot.onMessage(async (channel, user, message, self) => {
 
     setUserId(user.username);
     setInfoCanal(await getStreamInfo(channel));
+    const streamInfo = await getStreamInfo(channel);
+    console.log(streamInfo);
     setChannelId(channel);
 
     const currentTime = Date.now();
@@ -119,7 +121,7 @@ bot.onMessage(async (channel, user, message, self) => {
 
     const command = commandNames.find(cmd => message.toLowerCase().includes(cmd.toLowerCase()));
     if (command) {
-        await updateStreamInfo();
+        await updateStreamInfo(channel);
         if (elapsedTime < COOLDOWN_DURATION) {
             console.log("Mensaje de cooldown en el canal de " + channel);
             bot.say(channel, `PoroSad Por favor, espera ${COOLDOWN_DURATION - elapsedTime.toFixed(1)} segundos antes de enviar otro mensaje. NotLikeThis`);
