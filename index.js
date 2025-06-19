@@ -144,6 +144,12 @@ bot.onMessage(async (channel, user, message, self) => {
         lastResponseTime = currentTime;
 
         let text = message.slice(command.length).trim();
+        // Verifica si el texto está vacío
+        if (!text) {
+            bot.say(channel, `Por favor, escribe tu mensaje después del comando ${command}.`);
+            return;
+        }
+        
         if (SEND_USERNAME === 'true') {
             text = `Message from user ${user.username}: ${text}`;
         }
