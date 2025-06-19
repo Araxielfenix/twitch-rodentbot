@@ -143,9 +143,13 @@ bot.onMessage(async (channel, user, message, self) => {
         }
         lastResponseTime = currentTime;
 
-        let text = message.trim(); // Usamos el mensaje completo, sin eliminar el comando
+        let text = message.slice(command.length).trim();
+        // Verifica si el texto está vacío
+        if (!text) {
+            text = `Mensaje del usuario ${user.username}: ${message.trim()}`;
+        }
         if (SEND_USERNAME === 'true') {
-            text = `Message from user ${user.username}: ${text}`;
+            text = `Mensaje del usuario ${user.username}: ${text}`;
         }
 
         let response;
