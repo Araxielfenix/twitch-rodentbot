@@ -133,7 +133,7 @@ bot.onMessage(async (channel, user, message, self) => {
     const command = commandNames.find(cmd => message.toLowerCase().includes(cmd.toLowerCase()));
     if (command) {
         console.log("==================================");
-        console.log("Mensaje recibido en el canal de " + channel + " " + message);
+        console.log("Mensaje recibido en el canal de " + channel + ": " + message);
         await updateStreamInfo(channel);
         if (elapsedTime < COOLDOWN_DURATION) {
             console.log("Mensaje de cooldown en el canal de " + channel);
