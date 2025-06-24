@@ -44,7 +44,8 @@ if (!OPENAI_API_KEY_1 && !OPENAI_API_KEY_2) {
 const commandNames = COMMAND_NAME.split(',').map(cmd => cmd.trim().toLowerCase());
 const channels = CHANNELS.split(',').map(channel => channel.trim());
 const maxLength = 399;
-let fileContext = fs.readFileSync('./file_context.txt', 'utf8') + '\nPor favor, responde de manera resumida el mensaje del espectador: ';
+//let fileContext = fs.readFileSync('./file_context.txt', 'utf8') + '\nPor favor, responde de manera resumida el mensaje del espectador: ';
+let fileContext = "";
 let lastResponseTime = 0;
 let canal = "";
 
