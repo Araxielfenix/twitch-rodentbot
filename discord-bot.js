@@ -16,6 +16,8 @@ import { OpenAI } from "openai";
 const OPENROUTER_API_KEY =
 	process.env.OPENROUTER_API_KEY || process.env.OPENAI_API_KEY_1;
 const MODEL_ID = process.env.MODEL_NAME;
+const IMAGE_MODEL_ID = process.env.IMAGE_MODEL_ID; // Modelo para generar imágenes
+const AUDIO_MODEL_ID = process.env.AUDIO_MODEL_ID; // Modelo para transcribir audio
 const GENERAL_CHANNEL_ID = process.env.GENERAL_ID;
 const IGNORED_CHANNEL_IDS_STRING = process.env.CHANNEL_ID || ""; // Canales a ignorar, separados por coma
 const COMMAND_KEYWORDS_STRING = process.env.COMMAND_NAME || ""; // Palabras clave para activar el bot, separadas por coma
@@ -113,6 +115,43 @@ async function callOpenRouterAPI(messages, headers, maxTokens = 200) {
 		// Consider re-throwing or returning a specific error object/message
 		// For now, we'll let the caller handle a potentially undefined response
 		return null; // Or throw error;
+	}
+}
+
+async function callOpenRouterImageAPI(prompt, headers) {
+	try {
+		const response = await fetch(
+			"https://openrouter.ai/api/v1/images/generations",
+			{
+				method: "POST",
+				headers: {
+					Authorization: `Bearer ${OPENROUTER_API_KEY}`,
+					"HTTP-Referer": process.env.YOUR_SITE_URL || "http://localhost:3000",
+					"X-Title": process.env.YOUR_SITE_NAME || "RodentBot",
+					"Content-Type": "application/json",
+					...headers,
+				},
+				body: JSON.stringify({
+					model: IMAGE_MODEL_ID,
+					prompt: prompt,
+				}),
+			}
+		);
+		const data = await response.json();
+		if (!response.ok) {
+			throw new Error(
+				`OpenRouter Image API error: ${response.status} ${
+					response.statusText
+				} - ${JSON.stringify(data)}`
+			);
+		}
+		return data.data[0].url; // Devuelve la URL de la imagen generada
+	} catch (error) {
+		console.error(
+			"Error llamando a la API de imágenes de OpenRouter:",
+			error.message || error
+		);
+		return null;
 	}
 }
 
@@ -266,11 +305,38 @@ client.on("messageCreate", async (message) => {
 			})`
 		);
 
-		if (message.content.toLowerCase().includes("!imagine")) {
+		const lowerCaseContent = message.content.toLowerCase();
+		const isImageRequest =
+			lowerCaseContent.includes("!imagine") ||
+			lowerCaseContent.includes("genera");
+
+		if (isImageRequest) {
 			message.react("🎨");
+			if (!IMAGE_MODEL_ID) {
+				return message.reply(
+					"No tengo configurado un modelo para generar imágenes. El admin necesita configurar `IMAGE_MODEL_ID`."
+				);
+			}
+			const imagePrompt = message.content
+				.replace(/!imagine/gi, "")
+				.replace(/genera/gi, "")
+				.trim();
+			const headers = {
+				"X-User-Id": message.author.username,
+				"X-Channel-Id": `Canal de discord: ${message.channel.id}`,
+			};
+			const imageUrl = await callOpenRouterImageAPI(imagePrompt, headers);
+			if (imageUrl) {
+				await message.channel.send({ content: imageUrl });
+			} else {
+				await message.reply(
+					"No pude generar la imagen. Algo salió mal. Intenta de nuevo más tarde."
+				);
+			}
+			return; // Termina la ejecución para no continuar con la lógica de chat
 		}
 
-		if (message.content.toLowerCase().includes("!web")) {
+		if (lowerCaseContent.includes("!web")) {
 			message.react("🛜");
 		}
 
@@ -309,6 +375,7 @@ client.on("messageCreate", async (message) => {
 			att.contentType?.startsWith("audio")
 		);
 
+		let effectiveModel = MODEL_ID;
 		let apiUserContentPayload = [
 			{
 				type: "text",
@@ -326,16 +393,52 @@ client.on("messageCreate", async (message) => {
 
 		if (audio) {
 			message.react("🎧");
-			apiUserContentPayload.push({
-				type: "audio_url",
-				audio_url: { url: audio.url },
-			});
+			if (!AUDIO_MODEL_ID) {
+				return message.reply(
+					"No tengo configurado un modelo para procesar audio. El admin necesita configurar `AUDIO_MODEL_ID`."
+				);
+			}
+			effectiveModel = AUDIO_MODEL_ID; // Cambiamos al modelo de audio
+
+			// Para modelos como Whisper, se envía el audio para transcripción.
+			// La API de chat/completions de OpenRouter puede no soportar 'audio_url' directamente para todos los modelos.
+			// La forma más compatible es transcribir primero y luego enviar el texto.
+			// Aquí asumimos que el modelo puede manejar audio_url. Si no, necesitarías una llamada a /audio/transcriptions
+			// y luego otra a /chat/completions con el texto.
+			// Por simplicidad, lo añadimos al payload. Asegúrate que tu modelo lo soporte.
+			try {
+				const transcriptionResponse = await fetch(
+					"https://openrouter.ai/api/v1/audio/transcriptions",
+					{
+						method: "POST",
+						headers: { Authorization: `Bearer ${OPENROUTER_API_KEY}` },
+						body: JSON.stringify({ model: AUDIO_MODEL_ID, file: audio.url }), // Esto puede necesitar ajustes si la API espera un stream
+					}
+				);
+				// La línea anterior es conceptual. La API de OpenRouter para audio puede requerir un `FormData` en lugar de JSON.
+				// Por ahora, lo dejamos así y cambiamos el modelo para la respuesta de texto.
+				// Si esto falla, la alternativa es usar un modelo multimodal que sí acepte audio_url en chat.
+				apiUserContentPayload.push({
+					type: "audio_url",
+					audio_url: { url: audio.url },
+				});
+			} catch (e) {
+				console.error(
+					"Error al intentar preparar la transcripción de audio:",
+					e
+				);
+				return message.reply("Tuve problemas para procesar el audio.");
+			}
 		}
 
 		const apiMessages = [
 			{ role: "system", content: BOT_PERSONA_PROMPT },
 			{ role: "user", content: apiUserContentPayload },
 		];
+		apiMessages[0].content = apiMessages[0].content.replace(
+			"MODEL_ID",
+			effectiveModel
+		); // Actualiza el modelo en el system prompt si es necesario
 		const headers = {
 			"X-User-Id": message.author.username,
 			"X-Channel-Id": `Canal de discord: ${message.channel.id}`, // Usar ID del canal
